@@ -1,0 +1,162 @@
+html {
+margin:0;
+padding:0;
+}
+
+body
+{
+font-family:Verdana;
+font-size:12px;
+}
+
+.logopolice{
+width:12%;
+/*height:10%;*/
+position:absolute;
+top:1%;
+left:1%;
+padding: left;
+border: 0px solid #666;
+}
+
+.logopolimo{
+width:12%;
+/*height:10%;*/
+position:absolute;
+top:1%;
+right:1%;
+
+border: 0px solid #666;
+}
+
+
+.vaguepolice{
+width:77%;
+height:10%;
+top:1%;
+right:1%;
+padding: right;
+border: 0px solid #666;
+align:right;
+float:right;
+}
+
+#container{
+width:99%;
+margin:0 auto;
+padding-top:90px;
+}
+
+#coordpol{
+top:-10%;
+width:50%; 
+display:block; 
+height:120px;
+padding-top:1px;
+
+border:0px solid;
+border-color:blue;
+
+}
+
+#destinataire{
+width:48%;
+/*display:block;*/
+padding:right;
+text-align:left;
+position:left;
+float:right;
+
+border:0px solid;
+border-color:red;
+}
+
+#message{
+width:100%;
+display:block;
+padding:right;
+text-align:left;
+
+float:left;
+}
+
+#sign1{
+width:50%;
+display:block;
+padding:left;
+text-align:center;
+position:left;
+float:left;
+}
+
+#sign2{
+width:50%;
+display:block;
+padding:right;
+text-align:center;
+position:right;
+float:right;
+}
+
+#followus{
+width:98%;
+display:block;
+padding:right;
+text-align:center;
+position:right;
+float:right;
+}
+
+table {
+width:75%;
+border-color:#37a5dd;
+border-style:solid;
+border-width:0px;
+border-radius:8px;
+overflow:scroll;
+}
+
+th {
+font-family: monospace;
+font-size:12px;
+border: thin solid #eeeeee;
+/*width: 75%;*/
+padding: 5px;
+background-color: #eeeeee;
+border-radius:8px;
+/*background-image: url(sky.jpg);*/
+}
+
+td {
+font-family: sans-serif;
+font-size:12px;
+border: thin solid #eeeeee;
+/*width: 75%;*/
+padding: 5px;
+text-align: center;
+/*background-color: #CCCCCC;*/
+background:transparent;
+border-radius:8px;
+}
+
+caption {
+font-family: sans-serif;
+}
+
+th.titre{
+background-color: #046380;
+color: #E6E2AF;
+}
+
+th.sstitre{
+background-color: #045365;
+color: #CCCCCC;
+}
+
+td.noborder{
+border:none;
+}
+
+table.noborder{
+border:none;
+}

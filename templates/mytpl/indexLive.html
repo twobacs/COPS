@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+   <head>
+		<script type="text/JavaScript">
+         <!--
+            function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+         //-->
+		</script>
+	</head>
+   
+	<body onload="JavaScript:AutoRefresh(15000);">
+		<?php
+			if(isset($_SESSION['idUser'])){
+			$html=date('H').'h'.date('i').'.<br /> ';
+			if (isset($_COOKIE['iduser']))
+			{	
+				include('./class/live.class.php');
+				$live= new Live($this->dbPdo);
+				$unread=$live->selectUnreadByIdUser($_COOKIE['iduser']);
+				//print_r($unread);
+				if (count($unread)==0)
+				{
+					$html.='Vous n\'avez pas de message non lu.';
+				}
+				else
+				{
+					$html.='<img src="/templates/mytpl/images/Attention-anime--01.256.gif" style="max-height: 20px;" />';
+					$html.=(count($unread)==1) ? 'Vous avez 1 message non lu.' : 'Vous avez '.count($unread).' messages non lus.';
+					$html.='<img src="/templates/mytpl/images/attention.823.gif" style="max-height: 20px;" />';
+					$html.='<br /><a href="?mode=pop&component=live&action=seeMessages" target="_blank">Consulter mes messages. </a>';
+				}
+			}
+			echo $html;
+			}
+
+		?>	
+	</body>
+
+</html>

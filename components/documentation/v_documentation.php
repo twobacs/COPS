@@ -1,0 +1,77 @@
+<?php
+
+class VDocumentation extends VBase {
+
+    function __construct($appli, $model) {
+        parent::__construct($appli, $model);
+    }
+	
+public function nonCo()
+		{
+		$this->appli->ctContent='Vous n\'êtes pas connecté ou votre session a expiré.  Veuillez vous (re)connecter.';
+		}
+		
+public function afficheHtml($html)
+	{
+	$this->appli->ctContent=$html;
+	$this->appli->jScript= '<script type="text/javascript" src="./js/documentation.js"></script>';
+	}
+	
+private function datefr($date,$dateOnly=0) 
+	{
+    $split = explode(" ",$date);
+    $jour = $split[0];
+	if(isset($split[1]))
+		{
+		$heure = $split[1];
+		}
+	
+	$split2 = explode("-",$jour);	
+	$annee = $split2[0];
+    $mois = $split2[1];
+    $jour = $split2[2];
+
+		return $jour."-".$mois."-".$annee.' à '.$heure;
+	}		
+
+public function mainMenu(){
+	$html='<h3>Documentation</h3>';
+	$html.='<ul>';
+	$html.='<li><a href="?mode=m&component=garde&action=mainMenu">Liste gardes</a></li>';
+	$html.='<li><a href="/docroom/pdf/GIT_201509.pdf" target="_blank">GIT édition 2015</a></li>';
+	$html.='<li><a href="/docroom/pdf/le_refuge/.pdf" target="_blank">PIP intervention - Police - Site "Le Refuge"</a></li><ul>';
+	for($i=1;$i<9;$i++){
+		$html.='<li><a href="/docroom/pdf/le_refuge/fiche_'.$i.'.pdf" target="_blank">Fiche '.$i.' : ';
+		switch($i){
+			case 1:
+				$html.='contacts';
+				break;
+			case 2:
+				$html.='configuration des lieux + plan(s)';
+				break;
+			case 3:
+				$html.='vid&eacute;osurveillance';
+				break;
+			case 4:
+				$html.='acc&egrave;s et contr&ocirc;le d\'acc&egrave;s';
+				break;
+			case 5:
+				$html.='inscriptions des demandeurs d\'asile';
+				break;
+			case 6:
+				$html.='gestion des interventions sur site';
+				break;
+			case 7:
+				$html.='Compl&eacute;tude ISLP';
+				break;
+			case 8:
+				$html.='Contr&ocirc;le des r&eacute;fugi&eacute;s sur VP';
+				break;
+		}
+		$html.='</a></li>';
+	}
+	$html.='</ul></ul>';
+	$this->afficheHtml($html);
+	}
+}
+?>

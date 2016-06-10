@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <link rel="stylesheet" href="templates/pdfTemplate/css/style.css">
+ <script type="text/javascript" src="./js/jquery.min.js"></script>
+</head>
+<body onload="print()";>
+<img class="logopolice" src="templates/pdfTemplate/images/police.png">
+<img class="logopolimo" src="templates/pdfTemplate/images/polimo.png">
+<img class="vaguepolice"src="templates/pdfTemplate/images/vagues.png">
+<div id="container">
+	<hr>
+	<div id="destinataire">
+		<b>Destinataire : </b><br />
+		<?php echo $this->demandeur; ?><br />
+		<?php echo $this->adresse; ?>
+	</div>
+	<div id="coordpol">
+		Police Locale Mouscron<br />
+		Cellule Pr&eacute;vention<br />
+		25 rue Henri Debavay<br />
+		7700 Mouscron<br />
+		T&eacute;l. 056 863 150<br />
+		prevention@policemouscron.be<br />
+	</div>
+
+	<div id="message">
+		<hr>
+		<center>OBJET : Surveillance habitation / compte-rendu des patrouilles</center>
+		<!--Votre R&eacute;f.<br />-->
+		<hr>
+		Monsieur, Madame, <br /><br />
+		Suite &agrave; votre demande de "surveillance habitation" que vous avez introduite pour la p&eacute;riode du <?php echo $this->date_depart; ?> au <?php echo $this->date_retour; ?> aupr&egrave;s de la cellule pr&eacute;vention, nous portons &agrave; votre connaissance que des patrouilles de police ont effectué durant votre absence les passages suivants devant votre domicile : <br />
+		<br />
+		<center><?php echo $this->tableauPassages; ?></center><br />
+		Pour rappel, les "surveillances habitations" effectu&eacute;es par les patrouilles de police sont r&eacute;alis&eacute;es en fonction des disponibilit&eacute;s des services concern&eacute;s et des priorit&eacute;s d&eacute;coulant de l'actualit&eacute;.  <b>La priorit&eacute; de la zone de police restant &eacute;videmment d'assurer la s&eacute;curit&eacute; des citoyens 24h/24 sur l'ensemble du territoire communal, nous ne pouvons vous garantir un nombre minimum de passages devant votre domicile.</b><br />
+		<br />
+		Par le pr&eacute;sent courrier, nous voulons &eacute;galement attirer votre attention sur le fait que la police locale de Mouscron, dans le cadre de ses actions en mati&egrave;re de lutte contre les vols dans habitation, propose &agrave; la population les services de fonctionnaires en pr&eacute;vention "vols".  Il vous est possible de recevoir &agrave; domicile, gratuitement et au moment o&ugrave; cela vous convient, des conseils pratiques afin de s&eacute;curiser le mieux possible votre habitation et/ou votre garage.  Int&eacute;ress&eacute; ?  Il vous suffit de contacter la personne de contact (M. Benjamin Martin) afin de fixer un rendez-vous : <br />
+		<ul>
+		<li>Par t&eacute;l&eacute;phone : 056 863 150 (de 8h &agrave; 12h et de 13h30 &agrave; 17h)</li>
+		<li>Par mail : prevention@policemouscron.be</li>
+		</ul>
+		Nous vous remercions de la confiance que vous montrez &agrave; l'&eacute;gard de nos services et restons &agrave; votre disposition pour tout renseignement compl&eacute;mentaire.
+	</div>
+	<!--<img class="sign1"src="templates/pdfTemplate/images/vagues.png">-->
+	<br />
+	<div id="sign1">
+		<br />
+		<img src="templates/pdfTemplate/images/signatureDD.png"  style="width:200px;"><br />
+
+	</div>	
+	<div id="sign2">
+		<br />
+		<img src="templates/pdfTemplate/images/signatureBM.png" style="width:200px;" ><br />
+		<br /><br /><br /><br /><br />
+	</div>
+	
+	<div id="followus"><hr><i><font color="grey">L'actualit&eacute; de la police de Mouscron sur le web : www.policemouscron.be<br /><img src="templates/pdfTemplate/images/logoFB.png" height="25px"> <img src="templates/pdfTemplate/images/logoTwitter.png" height="25px"></font></i><hr></div>
+	
+</div>
+
+</body>
+</html>

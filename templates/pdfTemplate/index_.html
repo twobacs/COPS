@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="http://www.polfed-fedpol.be/favicon.ico" type="image/icon"/>
+  <title>Police locale de Mouscron - ZP5317</title>
+  <link rel="stylesheet" href="templates/pdfTemplate/css/style.css">
+  <!--<script type="text/javascript" src="./js/polimo.js"></script>-->
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+  <!--<script src="script.js"></script>-->
+</head>
+<body onload="window.print()">
+<div id="logo"><img src="templates/pdfTemplate/images/POLICE_3.jpg"></div>
+	<img src="templates/pdfTemplate/images/POLICE_3.jpg" size="75%">
+	&Agrave; l'attention de : <?php echo $this->demandeur;?><br />
+	
+	Suite à votre demande, la propriété sise <?php echo $this->adresse; ?> a été surveillée durant votre absence.<br />
+	Veuillez trouver ci-dessous un compte-rendu des différents passages effectués : <br />
+	<br />
+	<?php echo $this->tableauPassages; ?>	
+	
+	
+
+</body>
+</html>

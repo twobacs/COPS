@@ -1,0 +1,12 @@
+<?php
+$this->modules['menuBase']='';
+$this->modules['iFrame']='';
+$this->modules['left']='';
+$this->modules['botCentre']='';
+$this->modules['CTRL']='';
+$this->modules['topright']='';
+$this->modules['bienvenue']='';
+$this->modules['menuTablette']='';
+$this->modules['cssFile']='';
+$this->modules['checkNews']='';
+?>

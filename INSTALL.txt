@@ -1,0 +1,42 @@
+**************************************
+** PLATEFORME GESTION ET RESSOURCES **
+**************************************
+
+Auteur de ce document : 
+
+Jeremy De Backer
+Inspecteur de police
+Zone de police de Mouscron (5317)
+Service informatique
+056 / 863 186
+
+
+Les répertoires :
+- medias et récursifs
+- QRCodes et récursifs
+DOIVENT ETRE en "777"
+
+Le fichier /var/www/js/php/mailRetard.php
+doit être édité pour la fonction d'envoi de mails automatiques 
+ligne 37 : variable $sender : nom de l'expéditeur du mail
+ligne 53 : serveur smtp à configurer (smtp.gmail.com si vous optez pour un mail Gmail)
+ligne 54 : port du serveur smtp à modifier (587 pour Gmail)
+ligne 59 : nom d'utilisateur du compte mail
+ligne 60 : mot de passe du compte mail
+ligen 61 : nom de l'expéditeur 
+
+--> J'ai personnellement opté pour un service mail "Gmail" que j'ai trouvé plus facile à configurer, pour ce faire j'ai simplement créé un nouveau compte chez Google.
+(principalement pour éviter que nous ne soyons répertorié comme émeteur de spam, les "robots" d'envoi de mails étant régulièrement considérés comme tel.)
+
+
+LISTE DES ENTITES UTILISEES :
+
+<?php echo $this->ctMainMenu; ?> .......................... Affichage du menu principal
+<?php echo $this->ctCoNews;  ?> ........................... Affichage des news
+<?php echo $this->ctMatos; ?> ............................. Affichage du menu gestion
+<?php echo $this->ctContent; ?> ........................... Affichage du contenu principal du site
+<?php echo $this->right; ?> ............................... Affichage de la partie dynamique du site, à placer dans une balise right <div id="right"></div>
+<?php echo $this->ctStatus;?> ............................. Affichage du statut de connexion
+<div id="panier"></div> ................................... Div d'affichage permanent du panier
+<div id="right"></div> .................................... Div pour affichage dynamique de certaines réponses
+<input type="hidden" id="session" name="session" value="<?if (isset($_SESSION["iduser"])){echo $_SESSION["iduser"];} ?>"> .... A reprendre sur la page index

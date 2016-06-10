@@ -1,0 +1,47 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/icon"/>
+		<title>COPS - Police Mouscron</title>
+		<?php echo $this->cssFile; ?>
+		<script type="text/javascript" src="./js/zoom5317.js"></script>
+		<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+		<?php echo $this->jScript; ?> <?php echo $this->jScript2;?>
+	</head>
+
+	 <body>
+		<div id="bloc_page">
+			<header>
+				<div id="menuTablette">
+					<nav><?php echo $this->menuTablette; ?></nav>
+					
+				</div>
+			</header>
+
+			<div id="Content">
+				<?php echo $this->menuNav; ?>
+				<?php echo $this->ctContent; ?><br />
+				<?php echo $this->news; ?>
+			</div>
+
+			<div id="Left">
+				<center><?php echo $this->left; ?><br /><?php echo $this->picBio; ?><?php echo $this->ctrl; ?></center>
+			</div>			
+		
+		</div>
+		
+		<footer>
+			<div id="BottomLeft">
+				<?php echo $this->menuBase;?>
+			</div>
+
+			<div id="BottomCentre">
+				<?php echo $this->botCentre;?>
+			</div>
+			
+			<div id="BottomRight">
+				<?php echo $this->search;?>
+			</div>
+		</footer>
+	</body>
+</html>

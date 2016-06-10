@@ -1,0 +1,474 @@
+html {
+margin:0;
+padding:0;
+background-color:#eeeeee;
+/*background: url(../images/bg01.jpg) no-repeat center fixed;*/
+}
+
+body
+{
+font-family:Verdana;
+font-size:15px;
+}
+
+a {
+color:#046380;
+}
+
+/***************
+LOGO ZP MOUSCRON
+****************/
+#TopLeft
+{
+position:absolute;
+top:1em;
+left:1%;
+width:20%;
+height:5%;
+padding: left;
+border: 0px solid #666;
+}
+
+#TopRight
+{
+position:absolute;
+top:2em;
+right:1%;
+width:22%;
+height:8%;
+padding: right;
+border: 0px solid #666;
+}
+
+#TopLeft img
+{
+position:absolute;
+top:5%;
+left:1%;
+right:1%;
+border: 0px solid #666;
+}
+
+#Titre
+{
+position:absolute;
+top:1em;
+right:25%;
+left:25%;
+width:50%;
+height:5%;
+padding: right;
+border: 0px solid #666;
+}
+
+#Titre h1
+{
+text-align:center;
+}
+
+
+
+#MainMenu
+{
+position:absolute;
+top:20%;
+right:18%;
+left:18%;
+width:64%;
+height:5%;
+padding: right;
+border: 0px solid #666;
+}
+
+#Content
+{
+position:absolute;
+top:15%;
+right:1%;
+left:17%;
+width:81%;
+height:71%;
+padding: right;
+border: 0px solid #318CE7;
+overflow: auto;
+background-color:#FFFFFF;
+
+/**/
+-webkit-border-radius: 5px;
+-webkit-border-bottom-left-radius: 5px;
+-moz-border-radius: 5px;
+-moz-border-radius-bottomleft: 5px;
+border-radius: 5px;
+border-bottom-left-radius: 5px;
+}
+
+#Left
+{
+position:absolute;
+top:15%;
+left:1%;
+width:15%;
+height:66%;
+padding: left;
+border: 0px solid #318CE7;
+text-align: left;
+background-color:#eeeeee;
+
+/**/
+
+-webkit-border-radius: 5px;
+-webkit-border-bottom-right-radius: 5px;
+-moz-border-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+border-radius: 5px;
+border-bottom-right-radius: 5px;
+}
+
+#menuTablette{
+position:absolute;
+top:10%;
+right:1%;
+left:1%;
+width:99%;
+height:5%;
+padding: left;
+border: 0px solid #318CE7;
+text-align: center;
+background-color:#eeeeee;
+
+-webkit-border-radius: 5px;
+-webkit-border-bottom-right-radius: 5px;
+-moz-border-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+border-radius: 5px;
+border-bottom-right-radius: 5px;
+}
+
+#BottomLeft
+{
+position:absolute;
+top:91%;
+left:1%;
+width:15%;
+height:4%;
+padding: left;
+border: 0px solid #666;
+}
+
+#BottomCentre
+{
+position:absolute;
+top:91%;
+left:19%;
+width:75%;
+height:4%;
+padding: left;
+border: 0px solid #666;
+}
+
+#iFrame{
+position:absolute;
+top:1%;
+left:75%;
+width:15%;
+height:4%;
+padding: left;
+border: 0px solid #666;
+}
+
+
+
+/************************
+Menu déroulant horizontal
+************************/
+
+#menu{
+        width: 100%;
+        margin: 0;
+        padding: 10px 0 0 0;
+        list-style: none;
+        background: #111;
+        background: -moz-linear-gradient(#444, #111);
+        background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));
+        background: -webkit-linear-gradient(#444, #111);
+        background: -o-linear-gradient(#444, #111);
+        background: -ms-linear-gradient(#444, #111);
+        background: linear-gradient(#444, #111);
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        -moz-box-shadow: 0 2px 1px #9c9c9c;
+        -webkit-box-shadow: 0 2px 1px #9c9c9c;
+        box-shadow: 0 2px 1px #9c9c9c;
+}
+
+#menu li{
+        float: left;
+        padding: 0 0 10px 0;
+        position: relative;
+}
+
+#menu a{
+        float: left;
+        height: 25px;
+        padding: 0 25px;
+        color: #999;
+        text-transform: uppercase;
+        font: bold 12px/25px Arial, Helvetica;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #000;
+}
+
+#menu li:hover > a{
+        color: #fafafa;
+}
+
+*html #menu li a:hover{ /* IE6 */
+        color: #fafafa;
+}
+
+#menu li:hover > ul{
+        display: block;
+}
+
+/* Sous-menu */
+
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 99999;
+    background: #444;
+    background: -moz-linear-gradient(#444, #111);
+    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));
+    background: -webkit-linear-gradient(#444, #111);
+    background: -o-linear-gradient(#444, #111);
+    background: -ms-linear-gradient(#444, #111);
+    background: linear-gradient(#444, #111);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#menu ul li{
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+}
+
+#menu ul li:last-child{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#menu ul a{
+    padding: 10px;
+    height: auto;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+    text-transform: none;
+}
+
+*html #menu ul a{ /* IE6 */
+        height: 10px;
+        width: 150px;
+}
+
+*:first-child+html #menu ul a{ /* IE7 */
+        height: 10px;
+        width: 150px;
+}
+
+#menu ul a:hover{
+        background: #0186ba;
+        background: -moz-linear-gradient(#04acec,  #0186ba);
+        background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
+        background: -webkit-linear-gradient(#04acec,  #0186ba);
+        background: -o-linear-gradient(#04acec,  #0186ba);
+        background: -ms-linear-gradient(#04acec,  #0186ba);
+        background: linear-gradient(#04acec,  #0186ba);
+}
+
+#menu ul li:first-child a{
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+#menu ul li:first-child a:after{
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #444;
+}
+
+#menu ul li:first-child a:hover:after{
+    border-bottom-color: #04acec;
+}
+
+#menu ul li:last-child a{
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Rétablissement du flottement */
+#menu:after{
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+}
+
+* html #menu             { zoom: 1; } /* IE6 */
+*:first-child+html #menu { zoom: 1; } /* IE7 */
+
+/****************************
+Fin menu déroulant horizontal
+****************************/
+
+
+/******************************
+STYLE DE TABLE DONNE PAR GATWEB
+******************************/
+
+table {
+width:95%;
+border-color:#37a5dd;
+border-style:solid;
+border-width:0px;
+border-radius:8px;
+overflow:scroll;
+}
+
+th {
+font-family: monospace;
+border: thin solid #eeeeee;
+/*width: 75%;*/
+padding: 5px;
+background-color: #eeeeee;
+border-radius:8px;
+/*background-image: url(sky.jpg);*/
+}
+
+td {
+font-family: sans-serif;
+border: thin solid #eeeeee;
+/*width: 75%;*/
+padding: 5px;
+text-align: center;
+/*background-color: #CCCCCC;*/
+background:transparent;
+border-radius:8px;
+}
+
+caption {
+font-family: sans-serif;
+}
+
+th.titre{
+background-color: #046380;
+color: #E6E2AF;
+}
+
+th.sstitre{
+background-color: #045365;
+color: #CCCCCC;
+}
+
+td.noborder{
+border:none;
+}
+
+td.red{
+background-color: #FF3333;
+}
+
+td.green{
+background-color: #33CC33;
+}
+
+td.orange{
+background-color: #FFD175;
+}
+
+td.blue{
+background-color: #99CCFF;
+}
+
+table.noborder{
+border:none;
+}
+/************************
+FIN STYLE DE TABLE GATWEB
+************************/
+
+.msgconf{
+color:black;
+text-shadow: 5px 5px 5px grey;
+}
+
+#ListVac ul {
+font-family: monospace;
+font-size: 16px;
+}
+
+#ListVac ul li:hover{
+/*font-weight:bold;*/
+/* font-size: 18px; */
+color:blue;
+}
+
+#img-droits:hover {
+    content: url("/templates/mytpl/images/droitsHover.png");
+}
+
+#img-vacanciers:hover {
+    content: url("/templates/mytpl/images/vacanciersHover.png");
+}
+
+#img-users:hover {
+    content: url("/templates/mytpl/images/usersHover.png");
+}
+
+#img-missions:hover {
+    content: url("/templates/mytpl/images/bmissionsHover.png");
+}
+#img-rues:hover {
+    content: url("/templates/mytpl/images/ruesHover.png");
+}
+#img-quartiers:hover {
+    content: url("/templates/mytpl/images/quartiersHover.png");
+}
+#img-patrouilles:hover {
+    content: url("/templates/mytpl/images/patrouillesHover.png");
+}
+#img-fcops:hover {
+    content: url("/templates/mytpl/images/fcopsHover.png");
+}
+#img-bs:hover {
+    content: url("/templates/mytpl/images/bbsHover.png");
+}
+
+.boutonFinInt {
+     border:none;
+     background: transparent url('/templates/mytpl/images/fin_int.png') no-repeat;
+     width:500px;
+     height:100px;
+}
