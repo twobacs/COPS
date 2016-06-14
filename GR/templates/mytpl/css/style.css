@@ -1,0 +1,185 @@
+body{
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+	background: #a2c2f6;
+	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #092756 0%, #a2c2f6 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #092756 0%,#a2c2f6 100%);
+	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #092756 0%,#a2c2f6 100%);
+	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #092756 0%,#a2c2f6 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #092756 0%,#a2c2f6 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#a2c2f6',GradientType=1 );
+	color:#f0f0f5;
+	
+}
+
+#main{
+	position:relative;
+	z-index:1;
+	width: 80%;
+	height: 80%;
+	overflow-x: hidden;
+	margin-top:4px;
+	text-align:center;
+}
+
+#main::-webkit-scrollbar{
+	display:none;
+}
+
+#main, #box1{
+	display: inline-block;
+	vertical-align:top;
+}
+
+#box1{
+	z-index:1;
+	width: 19%;
+	height: 80%;
+	text-align: center;
+	padding-top: 25px;
+}
+
+#menuPerso{
+	font-size: 1.2em;
+	padding-top: 8px;
+}
+
+#menuPerso ul{
+	list-style-type: none;
+	margin:0;
+}
+
+#menuPerso li{
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 7px;
+}
+
+#pop_picture li, #ariane li{
+	list-style-type: none;
+}
+
+#ariane a{
+	color:#99ccff;
+	text-decoration:none;
+	font-size:1em; 
+	transition: font-size 0.8s, color 0.8s;
+}
+
+#ariane a:hover{
+	color:#cce6ff;
+	font-size:1.5em;
+}
+
+
+.bLogi, .bFinances, .bGRH, .bPers, .bAdmin
+{
+	display:inline-block;
+    width: 250px;
+    height: 250px;
+    border-radius: 90%;
+    transition: border-radius 1s, width 1s, height 1s, background-color 1s, line-height 1s, border 1s, color 1s, font-size 1s, box-shadow 1s;
+    font-size: 48;
+    margin: 5px;
+	vertical-align: middle;
+	line-height:250px;
+	border: 2px white solid;
+	background-image: none;
+	box-shadow: 2px 2px 2px black;
+	text-align: center;
+}
+
+.bGRH:hover
+{
+	background-image:url(../images/grh.png);
+	color: white;
+	text-align: center;
+}
+
+.bPers:hover
+{
+	background-image:url(../images/gestion_personnel.png);
+	color: white;
+	text-align: center;
+}
+
+.bLogi:hover
+{
+	background-image:url(../images/cone.png);
+	text-align: center;
+}
+
+.bFinances:hover
+{
+	background-image:url(../images/euro.png);
+    background-size: 100%;
+    background-repeat: no-repeat;	
+    text-align: center;
+}
+
+.bAdmin{
+	width: 96px;
+    height: 96px;	
+	line-height:96px;
+	font-size: 30;
+}
+
+.bLogi:hover, .bFinances:hover, .bGRH:hover, .bPers:hover, .bAdmin:hover
+{
+	background-color: blue;
+    width: 300px;
+    height: 300px;
+	line-height:30px;
+	background-color: #8EA2C6;
+	border: 8px #2C75FF solid;
+	/*font-size: 55;*/
+	box-shadow: none;
+	font-size:20;
+}
+
+.bAdmin:hover{
+	background-image:url(../images/admin.gif);
+	border-radius: 2%;
+    width: 160px;
+    height: 96px;	
+	line-height:160px;
+	font-size:0;
+	border: 2px #2C75FF solid;;
+}
+#slide1,#slide2,#slide3,#slide4{
+display: none;
+
+}
+
+#adminModules{
+	padding: 0 20px 6px;
+    margin-right: 8px;
+    vertical-align: top;
+    background: #678;
+    -moz-border-radius: 60px;
+    border-radius: 60px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    
+}
+
+#slideText1,#slideText2,#slideText3,#slideText4{
+cursor: pointer
+}
+
+#slide1,#slide2,#slide3,#slide4{
+font-size:25px;
+
+}
+
+#slide1 a:hover ,#slide2 a:hover ,#slide3 a:hover ,#slide4 a:hover {
+color : white;
+
+}
+
+
+
+
+}

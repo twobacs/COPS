@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="shortcut icon" href="" type="image/icon" />
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/GR/templates/mytpl/css/normalize.css">
+		<link rel="stylesheet" href="/GR/templates/mytpl/css/style.css" />
+		<link rel="stylesheet" href="/GR/templates/mytpl/css/styleJ.css" />
+		<link rel="stylesheet" type="text/css" href="/GR/templates/mytpl/css/ma_feuille_css_imprimante.css" media="print" />
+		<?php echo $this->css2; ?>
+		<title>Plateforme GR - Police Mouscron</title>
+		<script type="text/javascript" src="/GR/js/gr.js"></script>
+		<script type="text/javascript" src="/GR/templates/mytpl/js/index.js"></script>
+		<script type="text/javascript" src="/GR/templates/mytpl/js/prefixfree.min.js"></script>
+		<?php echo $this->jscript; ?>
+	</head>
+	 <body>
+	 <div class="container">
+		<header>
+			<div id="menu">
+				<div id="menuPerso">
+					<?php echo $this->menu_perso; ?>
+				</div>
+			</div>
+		</header>
+			<div id="main">
+				<?php echo $this->content; ?>		
+			</div>
+			<div id="box1">
+				<?php echo $this->box1; ?>
+			</div>
+	
+		<footer>
+		<div id="nbArtInCart"><?php echo $this->panierPMB; ?></div>
+		<div id="alert"><?php echo $this->alert; ?></div>
+		<p class="text-left"><a href="mailto:debacker.jeremy@policemouscron.be" class="btn btn-primary btn-lg active" role="button">&#64; De Backer Jeremy</a></p>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,644 @@
+/* Définition des polices personnalisées */
+
+@font-face
+{
+    font-family: 'Calibri';
+    src: url('../fonts/calibri.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+/********************* END *****************************/
+
+body
+{
+	font-family: Calibri, serif;
+	background-color: #EDEDED;
+	margin: 0;
+	
+}
+
+a:visited{
+	text-decoration:none;
+	color:blue;
+}
+
+#main
+{
+	position:relative;
+	z-index:1;
+	width: 80%;
+	height: 80%;
+	overflow-x: scroll;
+	margin-top:4px;
+	/*border: 1px black solid;*/
+}
+
+#main, #box1
+{
+	display: inline-block;
+	vertical-align:top;
+}
+
+#box1
+{
+	z-index:1;
+	width: 19%;
+	height: 80%;
+	/*border: 1px blue solid;*/
+	text-align: center;
+	padding-top: 25px;
+}
+
+#bEdit{
+	cursor:url(../icons/edit.gif),auto;
+}
+
+
+#boxColor{
+	width: 19%;
+	height: 5%;
+	text-align: center;
+	/*padding-top: 25px;*/
+	float:right;	
+	
+}
+
+/*#menu
+{
+	position:relative;
+	height:30px;
+	background-color: #EDEDED;
+	box-shadow: 0px 3px 3px #B2B2B2;
+}*/
+
+#menuPerso
+{
+	font-size: 0.8em;
+	padding-top: 8px;
+}
+
+#menuPerso ul
+{
+	list-style-type: none;
+	margin:0;
+}
+
+#menuPerso li
+{
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 7px;
+}
+
+#gestAdminSite ul {
+	list-style-type: none;
+	margin:0;
+}
+
+#gestAdminSite li {
+	display: inline-block;
+	margin-right: 10px;
+	border: 5px #3399ff solid;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	transition: height 1s, width 1s, line-height 1s, background-color 2s, border 1s, font-size 1s;
+}
+
+#gestAdminSite li:hover {
+	background-color: white;
+	border: 5px #2eb82e solid;
+}
+
+#MC-1-1 li, #MP-1-1 li
+{
+	position:relative;
+	display: block;
+	padding-top: 5px;
+	z-index:2;
+}
+
+#slide1, #slide2, #slide3, #slide4{
+	display:none;
+	text-align:center;
+}
+
+#gestAdminSite a, #slide1 a, #slide2 a, #slide3 a, #slide4 a{
+	color:#0066ff;
+	text-decoration:none;
+	font-size:auto;	
+	transition: font-size 1s;
+}
+
+#gestAdminSite a:hover, #slide1 a:hover, #slide2 a:hover, #slide3 a:hover, #slide4 a:hover{
+	font-size:28px;
+}
+#slide3 h3{
+	text-align:center;
+}
+
+
+
+#menuAccueil
+{
+	text-align: center;
+}
+
+#menuAccueil h1
+{
+	text-align: center;
+}
+
+#menuAccueil h2{
+	cursor:pointer;
+	transition: color 1s;
+}
+
+#menuAccueil h2:hover{
+	color:#33ccff;
+}
+
+.bLogi, .bFinances, .bGRH, .bPers, .bAdmin
+{
+	display:inline-block;
+    width: 250px;
+    height: 250px;
+    border-radius: 90%;
+    transition: border-radius 1s, width 1s, height 1s, background-color 1s, line-height 1s, border 1s, color 1s, font-size 1s, box-shadow 1s;
+    font-size: 48;
+    margin: 5px;
+	vertical-align: middle;
+	line-height:250px;
+	border: 2px white solid;
+	background-image: none;
+	box-shadow: 2px 2px 2px black;
+}
+
+.bAdmin{
+	width: 96px;
+    height: 96px;	
+	line-height:96px;
+	font-size: 30;
+}
+
+.bFinances:hover
+{
+	background-image:url(../images/euro.png);
+    background-size: 100%;
+    background-repeat: no-repeat;	
+}
+
+.bLogi:hover
+{
+	background-image:url(../images/cone.png);
+}
+
+.bPers:hover
+{
+	background-image:url(../images/gestion_personnel.png);
+	color: white;
+}
+
+.bGRH:hover
+{
+	background-image:url(../images/grh.png);
+	color: white;
+}
+
+.bLogi:hover, .bFinances:hover, .bGRH:hover, .bPers:hover, .bAdmin:hover
+{
+	background-color: blue;
+    width: 300px;
+    height: 300px;
+	line-height:30px;
+	background-color: #8EA2C6;
+	border: 8px #2C75FF solid;
+	/*font-size: 55;*/
+	box-shadow: none;
+	font-size:20;
+}
+
+.bAdmin:hover{
+	background-image:url(../images/admin.gif);
+	border-radius: 2%;
+    width: 160px;
+    height: 96px;	
+	line-height:160px;
+	font-size:0;
+	border: 2px #2C75FF solid;;
+}
+
+#box1 ul
+{
+	list-style-type: none;
+}
+
+#box1 a
+{
+	color: black;
+	text-decoration: none;
+	transition: text-shadow 1s, font-size 0.5s;
+}
+
+#box1 a:hover
+{
+	text-shadow: 1px 1px 1px #70B8FF;
+	font-size: 25px;
+}
+
+#box1 li{
+	border-bottom:0px solid #00CCCC;
+	border-radius:5px;
+	transition: background-color 0.5s;
+}
+
+
+#box1 li:hover{
+	background-color: white;
+}
+
+#box1 ul li:last-child{
+	text-shadow: 1px 1px 1px #00CCCC;
+	font-size: 20px;
+}
+
+#infoUser, #gestAdminSite
+{
+	position:relative;
+	margin-left: auto;
+	text-align: center;
+}
+
+#infoUser h1, #gestAdminSite h1
+{
+	text-align: center;
+}
+
+#gestAdminSite h3{
+	cursor:pointer;
+	transition: color 1s;
+}
+
+#gestAdminSite h3:hover{
+	color:#33ccff;
+}
+
+#infoUser table
+{
+	display:inline;
+	border: none;
+	border-radius: 2px 7px 7px 2px;
+}
+
+#infoUser th
+{
+	background-color: #8EA2C6;
+	border-radius: 5px 5px 5px 5px;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+
+#infoUser td
+{
+	min-width: 150px;
+	text-align: center;
+	border: 1px solid #8EA2C6;
+	border-radius: 5px 5px 5px 5px;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+
+#unconnected
+{
+	text-align: center;
+	margin-top: 25%;
+	font-size: 25px;
+	text-shadow: 2px 2px #8EA2C6;
+}
+
+#infoUser input[type="tel"], input[type="mail"], input[type="text"]{
+	background-color: #99FF99;
+	border-radius: 6px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#infoUser td.noborder{
+	padding-top:12px;
+	padding-bottom:15px;
+	border:none;
+}
+
+#infoUser input[type="submit"], #infoUser input[type="reset"], #infoUser input[type="button"]{
+	border-radius: 6px;
+	text-align: center;
+	font-size: 15px;
+	transition:background-color 0.5s;
+	margin-left: 15px;
+}
+
+#infoUser input[type="reset"]:hover{
+	background-color: #B2CCCC;
+}
+
+#bEnregistrer{
+	cursor:url(../icons/valid.gif),auto;
+}
+
+#bSupp{
+	cursor:url(../icons/delete.gif),auto;
+}
+
+#bAnnuler{
+	transition:background-color 0.5s;
+}
+
+#bAnnuler:hover{
+	background-color: #FFF;
+}
+
+#LiOkRecord{
+	color: green;
+}
+
+#LiOkSupp{
+	color:#33AD33;
+}
+
+#liError{
+	color:#ff0000;
+}
+
+#linkPersContact{
+	display:block;
+	text-align: center;
+	transition: color 1s, font-size 1s;
+	text-decoration: none;
+	width:100%;
+}
+
+#linkPersContact:hover{
+	font-size: 20px;
+}
+
+#fonctAdmin{
+	position:aboslute;
+	margin-left: 25%;
+}
+
+#fonctAdmin td{
+	border:none;
+	border-radius:15px;
+	padding-left:25px;
+	padding-right:25px;
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align:center;
+	transition:color 1s, background-color 1s, border-radius 1s, border 1s;
+}
+
+#fonctAdmin td:hover{
+	color:black;
+	background-color: auto;
+	border-radius:90%;
+}
+
+#fonctAdmin td::before{
+	background-color: pink;
+}
+
+#bAdminus{
+	background-color: #000000;
+	color: white;
+	transition:border-radius 1s, border 1s, padding 1s, color 0.5s, background-color 0.5s, transform 1s;	
+}
+
+#bAdminus:hover{
+	background-color: #99CCFF;
+	color: black;
+	transform:rotate(360deg);
+	padding: 50px;
+	border-radius:90%;
+	border:none;
+}
+
+#gestAdminSite td{
+	width: 250px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 5px;
+	text-align: center;
+	transition: background-color 1.5s;
+}
+
+#gestAdminSite th{
+	width: 250px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-radius: 5px;
+	text-align: center;	
+	background-color: #66FF99;
+}
+
+#gestAdminSite .titreTH{
+	background-color: #99ffcc;
+	border:1px black solid;
+}
+
+#gestAdminSite table{
+	width: auto;
+	position: relative;
+	padding:0 auto;
+	margin: 0 auto;
+}
+
+
+#gestAdminSite tr{
+	background-color: auto;
+	transition: background-color 1.5s;
+}
+
+#gestAdminSite tr:hover{
+	background-color: white;
+}
+
+#gestAdminSite td:hover{
+	background-color: #cce5ff;
+}
+
+
+@-webkit-keyframes hvr-buzz {
+  50% {
+    -webkit-transform: translateX(3px) rotate(2deg);
+    transform: translateX(3px) rotate(2deg);
+  }
+
+  100% {
+    -webkit-transform: translateX(-3px) rotate(-2deg);
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+
+@keyframes hvr-buzz {
+  50% {
+    -webkit-transform: translateX(3px) rotate(2deg);
+    transform: translateX(3px) rotate(2deg);
+  }
+
+  100% {
+    -webkit-transform: translateX(-3px) rotate(-2deg);
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+
+#bSupAdmin, #bAddAdmin {
+  /*display: inline-block;*/
+  /*vertical-align: middle;*/
+  margin: .4em;
+  padding: 1em;
+  cursor: pointer;
+  background: #949494;
+  text-decoration: none;
+  color: #D6D6D6;
+  /* Prevent highlight colour when element is tapped */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  transition: background 1.5s;
+}
+
+#bSupAdmin, #bAddAdmin {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+#bSupAdmin:hover, #bSupAdmin:focus, #bSupAdmin:active, #bAddAdmin:hover, #bAddAdmin:focus, #bAddAdmin:active {
+  -webkit-animation-name: hvr-buzz;
+  animation-name: hvr-buzz;
+  -webkit-animation-duration: 0.25s;
+  animation-duration: 0.25s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background:red;
+}
+
+#bAddAdmin:hover, #bAddAdmin:focus, #bAddAdmin:active {
+	background:green;
+}
+
+
+
+/*************/
+
+@keyframes blink {
+  0% {
+    background: violet;
+  }
+  14.3% {
+    background: indigo;
+  }
+  28.6% {
+    background: blue;
+  }
+  42.9% {
+    background: green;
+  }
+  57.2% {
+    background: yellow;
+  }
+  71.5% {
+    background: orange;
+  }
+  85.8% {
+    background: red;
+  }
+  100% {
+    background: violet;
+  }
+}
+
+@-webkit-keyframes blink {
+  0% {
+    background: violet;
+  }
+  14.3% {
+    background: indigo;
+  }
+  28.6% {
+    background: blue;
+  }
+  42.9% {
+    background: green;
+  }
+  57.2% {
+    background: yellow;
+  }
+  71.5% {
+    background: orange;
+  }
+  85.8% {
+    background: red;
+  }
+  100% {
+    background: violet;
+  }
+}
+
+#error{
+	position:fixed;
+	text-align:center;
+	margin-left: 25%;
+}
+#error h1{
+	position:relative;
+	width: 400px;
+	height: 80px;
+	line-height:80px;
+	animation: blink 4s linear infinite;
+	-webkit-animation: blink 4s linear infinite;
+	border-radius:60%;
+}
+
+/** scrollbars **/
+::-webkit-scrollbar {									/* Scrollbars */
+	width: 14px;
+	height: 14px;
+	background: #EDEDED;
+}
+
+::-webkit-scrollbar-track-piece {						/* Fond */
+	background: transparent none;
+	border: solid 4px transparent;
+	border-right-width: 8px;
+	margin: 4px;
+}
+
+::-webkit-scrollbar-thumb {								/* Barre */
+	border: solid 0 transparent;
+	border-right-width: 4px;
+	-webkit-border-radius: 5px;
+	-webkit-border-top-right-radius: 9px 5px;
+	-webkit-border-bottom-right-radius: 9px 5px;
+	-webkit-box-shadow: inset 0 0 0 1px rgb(79,79,79), inset 0 0 0 6px rgb(102,102,102);
+}
+::-webkit-scrollbar-thumb:hover {						/* Barre */
+	-webkit-box-shadow: inset 0 0 0 1px rgb(90,90,90), inset 0 0 0 6px rgb(110,110,110);
+}
+
+::-webkit-scrollbar-corner {							/* Coin de la fenêtre */
+	background: #EDEDED;
+}
