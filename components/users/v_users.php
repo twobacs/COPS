@@ -58,7 +58,7 @@ public function affichelogform()
 			$html.='<tr id="trCol">';
 				/* 21/09/2015 */
 				$html.='<th>Nombre de véhicule(s) à engager :</th><td><select name="nbVV" id="nbVV">';
-				for ($i=0;$i<11;$i++)
+				for ($i=1;$i<11;$i++)
 					{
 					$html.='<option value='.$i.'>'.$i.'</option>';
 					}
@@ -81,6 +81,8 @@ public function affichelogform()
 			/* ******************************** */
 			$html.='<h2>Note &agrave; l\'attention des GDP</h2>';
 			$html.='<center>Veuillez choisir l\'option "COPS version bureau" dans le menu ci-dessus.  Merci.</center>';
+			// $html.='<h2>Indisponibilit&eacute; de la plateforme</h2>';
+			// $html.='<center>Un red&eacute;marrage des serveurs est pr&eacute;vu ce 15 Juin 2016 à 09 heures afin d\'effectuer des mises à jour.  La plateforme sera indisponible jusqu\'&agrave; 10 heures.  Veuillez excuser la g&ecirc;ne occasionn&eacute;e.</center>';
 			$this->appli->deco='<a href="?component=users&action=logform"><img src="/templates/mytpl/images/connexion.png" height="40"></a>';
 		}
 		$this->afficheHtml($html);
