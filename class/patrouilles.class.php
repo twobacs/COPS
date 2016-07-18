@@ -157,6 +157,7 @@ public function getPatInTime($debut,$fin)
 	// (date_heure_debut>"'.$debut.'" AND date_heure_debut<"'.$fin.'")
 	// ORDER BY indicatif';
 	$sql='SELECT id_patrouille, indicatif, denomination FROM z_patrouille WHERE date_heure_debut BETWEEN "'.$debut.'" AND "'.$fin.'" ORDER BY indicatif';	
+	// return $sql;
 	$rep=$this->pdo->query($sql);
 	while ($row=$rep->fetch())
 		{
@@ -167,6 +168,7 @@ public function getPatInTime($debut,$fin)
 		}
 	$data['ttl']=$i;
 	return $data;
+	// return $sql;
 	}
 
 }

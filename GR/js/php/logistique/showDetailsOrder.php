@@ -32,8 +32,16 @@ if(isset($_GET['idPanier'])){
 	</div>';
 	$html.='
 	</div>
-	<div class="form-inline" id="bPrint" style="padding-top:15px">
-		<button type="button" class="btn btn-danger">Cl&ocirc;turer cette commande</button>
+	<div class="form-inline" id="bComment" style="padding-top:15px">
+		<button type="button" class="btn btn-success" onclick="commentBasket(\''.$_GET['idPanier'].'\',\''.$_GET['log'].'\');">Commenter cette commande</button>
+	</div>';
+	$html.='
+	<div id="commentBasket">
+	</div>';
+	$html.='
+	</div>
+	<div class="form-inline" id="bClose" style="padding-top:15px">
+		<button type="button" class="btn btn-danger" onclick="closeBasket(\''.$_GET['idPanier'].'\',\''.$_GET['log'].'\');">Cl&ocirc;turer cette commande</button>
 	</div>';	
 	echo $html;
 }

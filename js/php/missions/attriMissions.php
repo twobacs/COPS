@@ -37,7 +37,7 @@ if ((isset($_GET['level'])) && ($_GET['level']>19))
 	//Recherche du nombre d'équipes disponibles et de leurs id respectifs//
 	//*******************************************************************//
 	$equipes=$pat->getPatInTime($debut,$fin);
-	
+	// echo $equipes;
 	//****//
 	//COPS//
 	//****//
@@ -49,7 +49,7 @@ if ((isset($_GET['level'])) && ($_GET['level']>19))
 	//*************************************************************************//
 	for ($i=0;$i<$equipes['ttl'];$i++)
 		{
-		$html.='<th width="10%">'.$equipes[$i]['indicatif'].'</th>';
+		$html.='<th width="10%">'.$equipes[$i]['denomination'].'</th>';
 		}
 	$html.='<th width="10%">Toutes</th></tr>';
 		
@@ -90,8 +90,7 @@ if ((isset($_GET['level'])) && ($_GET['level']>19))
 	//*************************************************************************//
 	for ($i=0;$i<$equipes['ttl'];$i++)
 		{
-		// $html.='<th width="10%">'.$equipes[$i]['indicatif'].'</th>';
-		$html.='<th width="10%">'.$equipes[$i]['denomination'].'</th>';
+		$html.='<th width="10%">'.$equipes[$i]['indicatif'].'</th>';
 		}
 	$html.='<th width="10%">Toutes</th></tr>';
 	

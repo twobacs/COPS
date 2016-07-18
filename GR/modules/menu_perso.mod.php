@@ -14,7 +14,11 @@ if(isset($_SESSION['Prenom'])){
 	$this->menu_perso=$html;
 }
 
-
+else
+	if(!isset($_GET['redirect'])){
+	header('Location:index.php?redirect=true');
+	
+}
 /* BEFORE 
 else{
 	$html.='<li id="MC-1" onclick="slide(\'MC-1-1\');">Se connecter</li>';

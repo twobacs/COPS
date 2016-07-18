@@ -742,12 +742,13 @@ function modifQArt(art,panier,op){
 	
 }
 
-function showDetailsOrder(idPanier){
+function showDetailsOrder(idPanier,log){
 	$.ajax({
 		type:"GET",
 		url:"js/php/logistique/showDetailsOrder.php",
 		data:{
 			idPanier:idPanier,
+			log:log,
 		},
 		success:function(retour){
 			document.getElementById('detailsCommande').innerHTML=retour;
@@ -833,6 +834,56 @@ function updateComLogRowPanier(row){
 		// }
 
 	});
+}
+
+function closeBasket(id,log){
+	var ok = confirm('Voulez-vous clôturer cette commande ? \nVérifiez préalablement les quantités signalées comme livrées.\nUne fois clôturée, vous ne pourrez plus la modifier !');
+	if (ok){
+		$.ajax({
+			type:"GET",
+			url:"js/php/logistique/closeBasket.php",
+			data:{
+				panier:id,
+				log:log,
+			},
+			success:function(retour){
+				if(retour==1){
+					window.location.reload();
+				}
+				else{
+					// alert(retour);
+					alert('Une erreur s\'est produite');
+				}
+			}
+		});
+	}
+}
+
+function commentBasket(basket,user){
+	$.ajax({
+		type:"GET",
+		url:"js/php/logistique/getCommentBasket.php",
+		data:{
+			basket:basket,
+			user:user,
+		},
+		success:function(retour){document.getElementById('commentBasket').innerHTML=retour;}
+	});
+	
+}
+
+function updateComment(basket){
+	newComment=document.getElementById('comBasket'+basket).value;
+$.ajax({
+		type:"GET",
+		url:"js/php/logistique/updateCommentBasket.php",
+		data:{
+			basket:basket,
+			newComment:newComment,
+		},
+		success:function(retour){document.getElementById('comBasket'+basket).value=newComment;}
+	});	
+	
 }
 
 function closeRow(i){

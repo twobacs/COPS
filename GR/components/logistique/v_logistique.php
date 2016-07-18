@@ -1258,7 +1258,7 @@ public function showNewOrders($data){
 				<div class="input-group-addon" style="width:50px;">'.$this->datefr($row['date_creation']).'</div>
 				<div class="input-group-addon" style="width:55px;">Demandeur</div>
 				<div class="input-group-addon" style="width:350px;">'.ucfirst($row['nom']).' '.ucfirst($row['prenom']).'</div>
-				<div class="input-group-addon" style="cursor:pointer;color:green;width:35px;" onclick="showDetailsOrder(\''.$row['id_panier'].'\');">D&eacute;tails</div>
+				<div class="input-group-addon" style="cursor:pointer;color:green;width:35px;" onclick="showDetailsOrder(\''.$row['id_panier'].'\',\''.$_SESSION['idUser'].'\');">D&eacute;tails</div>
 			
 		</div>
 		';

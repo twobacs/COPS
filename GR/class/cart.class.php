@@ -13,10 +13,10 @@ public function getNewOrders(){
 	b.nom, b.prenom
 	FROM panierPMB a
 	LEFT JOIN users b ON b.id_user=a.id_user
-	WHERE a.date_envoi!=:dateE AND date_avisLog=:dateA';
+	WHERE a.date_envoi!=:dateE AND dateCloture="0000-00-00"';
 	$req=$this->pdo->prepare($sql);
 	$req->bindValue('dateE','0000-00-00',PDO::PARAM_INT);
-	$req->bindValue('dateA','0000-00-00',PDO::PARAM_INT);
+	// $req->bindValue('dateA','0000-00-00',PDO::PARAM_INT);
 	$req->execute();
 	return $req;
 }
@@ -44,6 +44,23 @@ public function getOrderDetailsById($id){
 	$req->execute();
 	$data['demandeur']=$req;
 	return $data;
+}
+
+public function getInfosByIdCart($id){
+	$sql='SELECT date_avisLog, avisLog FROM panierPMB WHERE id_panier=:idCart';
+	$req=$this->pdo->prepare($sql);
+	$req->bindValue('idCart',$id,PDO::PARAM_INT);
+	$req->execute();
+	return $req;
+}
+
+public function updateCommentBasket($basket,$comment){
+	$sql='UPDATE panierPMB SET avisLog=:avis, date_avisLog=NOW() WHERE id_panier=:panier';
+	$req=$this->pdo->prepare($sql);
+	$req->bindValue('avis',$comment,PDO::PARAM_STR);
+	$req->bindValue('panier',$basket,PDO::PARAM_STR);
+	$req->execute();
+	return $req->rowCount;
 }
 
 }

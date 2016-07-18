@@ -23,7 +23,7 @@ ligne 53 : serveur smtp à configurer (smtp.gmail.com si vous optez pour un mail
 ligne 54 : port du serveur smtp à modifier (587 pour Gmail)
 ligne 59 : nom d'utilisateur du compte mail
 ligne 60 : mot de passe du compte mail
-ligen 61 : nom de l'expéditeur 
+ligne 61 : nom de l'expéditeur 
 
 --> J'ai personnellement opté pour un service mail "Gmail" que j'ai trouvé plus facile à configurer, pour ce faire j'ai simplement créé un nouveau compte chez Google.
 (principalement pour éviter que nous ne soyons répertorié comme émeteur de spam, les "robots" d'envoi de mails étant régulièrement considérés comme tel.)

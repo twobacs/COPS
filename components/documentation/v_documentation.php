@@ -38,7 +38,9 @@ public function mainMenu(){
 	$html='<h3>Documentation</h3>';
 	$html.='<ul>';
 	$html.='<li><a href="?mode=m&component=garde&action=mainMenu">Liste gardes</a></li>';
-	$html.='<li><a href="/docroom/pdf/GIT_201509.pdf" target="_blank">GIT édition 2015</a></li>';
+	$html.='<li><a href="/docroom/pdf/GIT_201409.pdf" target="_blank">GIT édition septembre 2014</a></li>';
+	$html.='<li><a href="/docroom/bio/suivitabacs.pdf" target="_blank">Suivi tabacs</a></li>';
+	$html.='<li><a href="/docroom/bio/bio.pdf" target="_blank">Fiche BIO</a></li>';	
 	$html.='<li><a href="/docroom/pdf/le_refuge/.pdf" target="_blank">PIP intervention - Police - Site "Le Refuge"</a></li><ul>';
 	for($i=1;$i<9;$i++){
 		$html.='<li><a href="/docroom/pdf/le_refuge/fiche_'.$i.'.pdf" target="_blank">Fiche '.$i.' : ';
