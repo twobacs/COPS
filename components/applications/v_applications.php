@@ -82,6 +82,7 @@ public function showApps($data)
 				if ($idNivAcces>3)
 					{
 					$html.='<a href="?component=cops&action=mainMenu">Fiches COPS</a>';
+					$html.='<a href="?component=documentation&action=gestDoc">Gestion documentation</a>';
 					// $html.='<img id="img-fcops" src="/templates/mytpl/images/fcops.png" width="20%"></a><br />';
 					}
 				break;

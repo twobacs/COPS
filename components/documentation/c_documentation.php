@@ -29,6 +29,10 @@ public function mainmenu()
 	else $this->view->nonCo();
 }
 
+public function gestDoc(){
+	
+}
+
 
 }
 ?>
