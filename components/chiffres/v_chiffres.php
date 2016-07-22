@@ -27,6 +27,22 @@ private function datefr($date)
 		return $jour."-".$mois."-".$annee;
 	}
 
+private function datehfr($date,$h=0)
+	{
+    $split = explode(" ",$date);
+    $jour = $split[0];
+	$heure = ($h==0) ? '' : $split[1];
+
+	$split2 = explode("-",$jour);
+	$annee = $split2[0];
+    $mois = $split2[1];
+    $jour = $split2[2];
+
+	$return = ($h==0) ? $jour."-".$mois."-".$annee : $jour."-".$mois."-".$annee." à ".$heure;
+
+	return $return;
+	}
+
 function cleanCaracteresSpeciaux ($chaine)
 {
 	setlocale(LC_ALL, 'fr_FR');
@@ -52,6 +68,7 @@ public function mainMenu(){
 	$html.='<li>Chiffres sur base d\'une d&eacute;nomination d\'&eacute;quipe : <a href="?component=chiffres&action=searchDenom"> Go !</a></li>';
 	$html.='<li>Chiffres sur base d\'un indicateur : <a href="?component=chiffres&action=searchIndic"> Go !</a></li>';
 	$html.='<li>Chiffres sur base d\'un utilisateur : <a href="?component=chiffres&action=searchUser"> Go !</a></li>';
+	$html.='<li>Chiffres sur base d\'une mission avec interaction : <a href="?component=chiffres&action=searchMission&tri=date_debut%20DESC"> Go !</a></li>';
 	$html.='</ul>';
 	$this->afficheHtml($html);
 }
@@ -255,6 +272,70 @@ public function afficheCSV($data,$type){
 		else echo "\n";
 		next($data);
 	}
+}
+
+public function showInfosByIdFiche($data){
+	$mm=0;
+	$html='<h2>R&eacute;sultat de votre recherche</h2>';
+	$html.='<h3>Texte informatif de la fiche</h3>';
+	$html.='<b>'.$data['texteInfo'].'</b>';
+	$html.='<h3>D&eacute;tails des r&eacute;sultats</h3>';
+	$html.='<table border="1"><tr><th>Indicatif</th><th>De</th><th>&Agrave;</th><th>Membre(s)</th><th>R&eacute;sultat</th></tr>';
+	for($i=0;$i<$data['total'];$i++){
+		if(isset($data[$i]['indicatif'])){
+			$html.='<td>'.$data[$i]['indicatif'].'</td><td>'.$this->datehfr($data[$i]['dhb'],1).'</td><td>'.$this->datehfr($data[$i]['dhf'],1).'</td><td>';
+				for($j=0;$j<$data[$i]['equipiers'];$j++){
+					if($j!=0){
+						$html.=' - ';
+					}
+					$html.=$data[$i]['nom'][$j].' '.$data[$i]['prenom'][$j].' ';
+				}
+				$html.='</td>';
+				$html.='<td>';
+				if($data[$i]['date_heure_in']=='0000-00-00 00:00:00'){
+					$html.='Non effectu&eacute;';
+				}
+				else{
+					$html.=$data[$i]['commentaire'];
+				}
+				$html.='</td>';
+			$html.='</tr>';
+			$mm++;
+			}
+		}
+	$html.='</table>';
+	$html.='<h3>Soit un total de ';
+	$html.=$mm.' PM </h3>';
+	// $html.=$mm;
+	// echo '<pre>';
+	// var_dump($data);
+	// echo '</pre>';
+	$html.='<a href="?component=chiffres&action=searchMission">Retour s&eacute;lection fiche</a>';
+	$this->afficheHtml($html);
+}
+
+public function showMissions($data){
+	$tri=$_GET['tri'];
+	$zetri='<a href=?component=chiffres&action=searchMission&tri=';
+	$html='<h2>Veuillez choisir une mission</h2>';
+	$html.='<table border="1"><tr><th>';
+	$zetri.=($tri=='dateHr_encodage DESC') ? 'dateHr_encodage%20ASC>' : 'dateHr_encodage%20DESC>';
+	$html.=$zetri;
+	$zetri='<a href=?component=chiffres&action=searchMission&tri=';
+	$html.='Date d\'encodage</a></th><th>';
+	$zetri.=($tri=='date_debut DESC') ? 'date_debut%20ASC>' : 'date_debut%20DESC>';
+	$html.=$zetri;
+	$html.='Date d&eacute;but</a></th><th>';
+	$zetri='<a href=?component=chiffres&action=searchMission&tri=';
+	$zetri.=($tri=='date_fin DESC') ? 'date_fin%20ASC>' : 'date_fin%20DESC>';
+	$html.=$zetri;
+	$html.='Date Fin</a></th><th>Texte</th></tr>';
+	foreach($data as $key => $row){
+		$html.='<td width="15%">'.$row['dateHr_encodage'].'</td><td width="15%">'.$this->datehfr($row['date_debut'],1).'</td><td width="15%">'.$this->datehfr($row['date_fin'],1).'</td><td><a href="?component=chiffres&action=getInfoByIdFiche&key='.$row['id_fiche'].'">'.$row['texteInfo'].'</a></td></tr>';
+	}
+	$html.='</table>';
+	$html.=sizeof($data);
+	$this->afficheHtml($html);
 }
 }
 ?>

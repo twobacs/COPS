@@ -315,6 +315,58 @@ public function getsearchDenom($type, $denom, $db, $dh){
 	$result['fin']=$dh;
 	return $result;
 }
+
+public function getInfoByIdFiche(){
+	$fiche=$_GET['key'];
+	$data=array();
+	$sql='SELECT texteInfo FROM z_fiche WHERE id_fiche="'.$fiche.'"';
+	$rep=$this->appli->dbPdo->query($sql)->fetchAll();
+	foreach ($rep as $key => $row){
+		$data['texteInfo']=$row['texteInfo'];
+	}
+	$sql='SELECT id_patrouille, commentaire, date_heure_in FROM z_pat_missions WHERE id_fiche="'.$fiche.'"';
+	$rep=$this->appli->dbPdo->query($sql)->fetchAll();
+	$i=0;
+	foreach($rep as $key => $row){
+		$data[$i]['commentaire']=$row['commentaire'];
+		$data[$i]['date_heure_in']=$row['date_heure_in'];
+		$sql1='SELECT id_bs, id_patrouille FROM z_bs WHERE id_patrouille="'.$row['id_patrouille'].'" ORDER BY date_heure_in';
+		$rep1=$this->appli->dbPdo->query($sql1)->fetchAll();
+		foreach ($rep1 as $key => $row1){
+			$sql2='SELECT id_user FROM z_bs_users WHERE id_bs="'.$row1['id_bs'].'"';
+			$rep2=$this->appli->dbPdo->query($sql2)->fetchAll();
+			$j=0;
+			foreach ($rep2 as $key => $row2){
+				$sql3='SELECT nom, prenom FROM users WHERE id_user="'.$row2['id_user'].'"';
+				$rep3=$this->appli->dbPdo->query($sql3)->fetchAll();
+				foreach ($rep3 as $key => $row3){
+					$data[$i]['nom'][$j]=$row3['nom'];
+					$data[$i]['prenom'][$j]=$row3['prenom'];
+					$j++;
+				}
+				$data[$i]['equipiers']=$j;
+			}
+			
+			$sql4='SELECT date_heure_debut, date_heure_fin, indicatif FROM z_patrouille WHERE id_patrouille="'.$row['id_patrouille'].'"';
+			$rep4=$this->appli->dbPdo->query($sql4)->fetchAll();
+			foreach ($rep4 as $key => $row4){
+					$data[$i]['dhb']=$row4['date_heure_debut'];
+					$data[$i]['dhf']=$row4['date_heure_fin'];
+					$data[$i]['indicatif']=$row4['indicatif'];
+				}
+		}
+	$i++;
+	}
+	$data['total']=$i;
+	return $data;
+}
+
+public function getMissions(){
+	$tri=$_GET['tri'];
+	$sql='SELECT id_fiche, dateHr_encodage, date_debut, date_fin, texteInfo FROM z_fiche WHERE interaction="O" ORDER BY '.$tri.'';
+	return $this->appli->dbPdo->query($sql)->fetchAll();
+	
+}
 	
 }
 ?>

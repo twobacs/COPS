@@ -70,5 +70,15 @@ public function exportCSV(){
 	}
 }
 
+public function getInfoByIdFiche(){
+	$data=$this->model->getInfoByIdFiche();
+	$this->view->showInfosByIdFiche($data);
+}
+
+public function searchMission(){
+	$data=$this->model->getMissions();
+	$this->view->showMissions($data);
+}
+
 }
 ?>
