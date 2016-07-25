@@ -310,7 +310,7 @@ public function showInfosByIdFiche($data){
 	// echo '<pre>';
 	// var_dump($data);
 	// echo '</pre>';
-	$html.='<a href="?component=chiffres&action=searchMission">Retour s&eacute;lection fiche</a>';
+	$html.='<a href="?component=chiffres&action=searchMission&tri=date_debut DESC">Retour s&eacute;lection fiche</a>';
 	$this->afficheHtml($html);
 }
 
