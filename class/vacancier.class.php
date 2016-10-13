@@ -372,13 +372,15 @@ function getNbIncidentsById($id)
 function getVanciersInTime($debut,$fin)	
 	{
 	$i=0;
-	$sql='SELECT a.id_vac, a.vac_CP, a.vac_ville, a.vac_numero, a.IdRue, b.NomRue
+	$sql='SELECT DISTINCT a.id_vac, a.vac_CP, a.vac_ville, a.vac_numero, a.IdRue, b.NomRue, d.denomination AS denomQ
 	FROM z_vac_habitation a
 	LEFT JOIN z_rues b ON a.IdRue=b.IdRue
+	LEFT JOIN z_quartier_rue c ON c.idRue = a.IdRue
+	LEFT JOIN z_quartier d ON d.id_quartier=c.id_quartier
 	WHERE
 	((a.vac_dateRetour>"'.$debut.'" AND a.vac_dateDepart<"'.$fin.'") OR
 	(a.vac_dateDepart>"'.$debut.'" AND a.vac_dateDepart<"'.$fin.'"))
-	ORDER BY a.vac_dateDepart';//d.id_quartier';
+	ORDER BY d.denomination ASC';//d.id_quartier';
 	
 	$rep=$this->pdo->query($sql);
 	while ($row=$rep->fetch())
@@ -389,21 +391,21 @@ function getVanciersInTime($debut,$fin)
 		$data[$i]['num']=$row['vac_numero'];
 		$data[$i]['rue']=$row['NomRue'];
 		//RECHERCHE DU QUARTIER DONT FAIT PARTIE L'HABITATION
-		$cote=($data[$i]['num'] % 2 == 0) ? 'P' : 'I';
+		// $cote=($data[$i]['num'] % 2 == 0) ? 'P' : 'I';
 		// echo $cote.'<br />';
 		// Une petite regex fait ça très simplement et proprement : 
-		$row['vac_numero'] = preg_replace('`[^0-9]`', '', $row['vac_numero']);
+		// $row['vac_numero'] = preg_replace('`[^0-9]`', '', $row['vac_numero']);
 		
-		$sqlb='SELECT a.id_quartier, b.denomination 
-		FROM z_quartier_rue a
-		LEFT JOIN z_quartier b ON b.id_quartier=a.id_quartier
-		WHERE IdRue="'.$row['IdRue'].'" AND cote="'.$cote.'" AND limiteBas<='.$row['vac_numero'].' AND limiteHaut>='.$row['vac_numero'].'';
+		// $sqlb='SELECT a.id_quartier, b.denomination 
+		// FROM z_quartier_rue a
+		// LEFT JOIN z_quartier b ON b.id_quartier=a.id_quartier
+		// WHERE IdRue="'.$row['IdRue'].'" AND cote="'.$cote.'" AND limiteBas<='.$row['vac_numero'].' AND limiteHaut>='.$row['vac_numero'].'';
 		// echo '<b>'.$sqlb.'<b><br />';
-		$repb=$this->pdo->query($sqlb);
-		while ($rowb=$repb->fetch()){
-		$data[$i]['quartier']=$rowb['denomination'];	
+		// $repb=$this->pdo->query($sqlb);
+		// while ($rowb=$repb->fetch()){
+		$data[$i]['quartier']=$row['denomQ'];	
 		// echo $rowb['denomination'].'<br />';
-		}
+		// }
 		//FIN RECHERCHE QUARTIER		
 		$sqla='SELECT COUNT(*) FROM z_vac_hab_controle WHERE id_vac="'.$row['id_vac'].'"';
 		$repa=$this->pdo->query($sqla);

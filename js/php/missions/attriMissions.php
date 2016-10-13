@@ -101,7 +101,6 @@ if ((isset($_GET['level'])) && ($_GET['level']>19))
 	$datefin=getDateFromDateTime($fin);
 	
 	$vacanciers=$vac->getVanciersInTime($datedebut,$datefin);
-
 	for ($i=0;$i<$vacanciers['ttl'];$i++)
 		{
 		$html.='<tr><td>'.$vacanciers[$i]['rue'].', '.$vacanciers[$i]['num'];

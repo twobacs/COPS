@@ -81,6 +81,11 @@ function login($login, $password){
 				if(isset($adm)){
 					$_SESSION['admin']=true;
 				}
+				$sql='INSERT INTO logs_GR (nom, prenom, instaLog) VALUES (:nom, :prenom, NOW())';
+				$req=$this->pdo->prepare($sql);
+				$req->bindParam(':nom',$nom,PDO::PARAM_STR);
+				$req->bindParam(':prenom',$prenom,PDO::PARAM_STR);
+				$req->execute();				
 				return 1;
 			}
 		}		
