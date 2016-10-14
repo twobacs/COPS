@@ -9,7 +9,26 @@ if (isset($_GET['idPat']))
 	$data=getInfosBS($idpat,$idBS,$pdo);
 	$html=genBS($data);
 	
-	echo $html;
+$entete='
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/icon"/>
+		<title>COPS - Police Mouscron</title>
+		<link rel="stylesheet" href="style.css">                		<script type="text/javascript" src="zoom5317.js"></script>
+		<script type="text/javascript" src="jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="bs.js"></script> 	</head>
+
+	 <body>
+		<div id="bloc_page">
+			<header>
+			</header>
+
+			<div id="Content">';
+			
+$end='</div></body>';
+	
+	echo $entete.$html.$end;
 	
 	}
 	
@@ -277,12 +296,12 @@ function genBS($data)
 	{
 	
 	$html='<div id="BS">';
-	$html.='<h2>Bulletin de service</h2>';
+	$html.='<h2 align="center">Bulletin de service</h2>';
 	$html.='<input type="button" onclick="imprimer();" value="Imprimer">';
-	$html.='<table>';
+	$html.='<table align="center">';
 	$html.='<tr><td width="50%"><b>Date</b> : '.substr(datefr($data['patrouille']['debut']),0,10).'</td><td><b>Horaire</b> : '.substr(datefr($data['patrouille']['debut']),13,5).' - '.substr(datefr($data['patrouille']['fin']),13,5).'</td></tr>';
 	$html.='</table>';
-	$html.='<table>';
+	$html.='<table align="center">';
 	$html.='<tr><td width="50%">D&eacute;nomination : '.$data['patrouille']['denomination'].'</td><td>Indicatif : '.$data['patrouille']['indicatif'].'</td></tr>';
 	
 	$html.='<tr><th>Collaborateur(s) engag&eacute(s)</th><th>Mat&eacute;riel</th></tr>';
@@ -553,6 +572,7 @@ function getSubject($idpat,$pdo)
 		$fin=dateHrfr($row['date_heure_fin'],1);
 		}
 	$html='BS de '.$indicatif.' du '.$debut.'.';
+	
 	return $html;
 	}
 ?>

@@ -30,7 +30,19 @@ public function mainmenu()
 }
 
 public function gestDoc(){
-	
+    $co=$this->verifCo();
+    if($co){
+        $files=$this->model->getDocs();
+        $this->view->showFiles($files);
+    }
+}
+
+public function addFile(){
+    $co=$this->verifCo();
+    if($co){
+        $categ=$this->model->getCategFiles();
+        $this->view->menuAddFile($categ);
+    }
 }
 
 

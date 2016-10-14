@@ -9,9 +9,8 @@ function viewBS(idPat,idBS,urlFrom)
 			idbs : idBS,
 			urlFrom : urlFrom,
 			},
-		// success : function(retour){$('#Content').html(retour);},
-		success : function(retour){window.open(retour,'_blank');},
-		error : notOk,
+		success : function(retour){$('#Content').html(retour);},
+		erroro : notOk,
 		});
 	
 	}

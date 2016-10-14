@@ -45,7 +45,8 @@ public function afficheListBS($data)
 	$html.='<tr><th width="20%"><a href="?component=bs&action=mainMenu&orderBy=indicatifUp"><img src="'.MEDIA.'/icons/up.png" height="15" align="left"></a>Indicatif<a href="?component=bs&action=mainMenu&orderBy=indicatifDown"><img src="'.MEDIA.'/icons/down.png" height="15" align="right"></a></th><th width=20%"><a href="?component=bs&action=mainMenu&orderBy=DeUp"><img src="'.MEDIA.'/icons/up.png" height="15" align="left"></a>De<a href="?component=bs&action=mainMenu&orderBy=DeDown"><img src="'.MEDIA.'/icons/down.png" height="15" align="right"></a></th><th width="20%"><a href="?component=bs&action=mainMenu&orderBy=AUp"><img src="'.MEDIA.'/icons/up.png" height="15" align="left"></a>A<a href="?component=bs&action=mainMenu&orderBy=ADown"><img src="'.MEDIA.'/icons/down.png" height="15" align="right"></a></th><td class="noborder" width="10%"></td></tr>';
 	while ($row=$data->fetch())
 		{
-		$html.='<tr><td>'.$row['indicatif'].'</td><td>'.$this->datefr($row['date_heure_debut']).'</td><td>'.$this->datefr($row['date_heure_fin']).'</td><td><input type="button" onclick="viewBS(\''.$row['id_patrouille'].'\',\''.$row['id_bs'].'\',\''.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'\');" value="Voir BS"></td></tr>';
+		// $html.='<tr><td>'.$row['indicatif'].'</td><td>'.$this->datefr($row['date_heure_debut']).'</td><td>'.$this->datefr($row['date_heure_fin']).'</td><td><input type="button" onclick="viewBS(\''.$row['id_patrouille'].'\',\''.$row['id_bs'].'\',\''.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'\');" value="Voir BS"></td></tr>';
+		$html.='<tr><td>'.$row['indicatif'].'</td><td>'.$this->datefr($row['date_heure_debut']).'</td><td>'.$this->datefr($row['date_heure_fin']).'</td><td><a href="/js/php/bs/viewBS.php?idPat='.$row['id_patrouille'].'&idbs='.$row['id_bs'].'" target="_blank">Voir BS</td></tr>';
 		}
 	$html.='</table></div>';
 	

@@ -738,7 +738,7 @@ public function accueilTab2(){
 	$html.='<li class="repHot"><a href="?mode=pop&component=cops&action=listHot" target="_blank">Infos hot validées</a></li><li class="repHot"><a href="?mode=pop&component=infos&action=showInfos" target="_blank" >Infos hot proposées</a></li><li class="repHot"><a href="?mode=newInfo&component=infos&action=newInfo" target="_blank">Encoder une info</a></li>';
 	$html.='</div>';
 	$html.='<div class="blank"></div><div class="repHot"></div>';
-	$html.='<div class="bAutre">Autre</div>';
+	$html.='<div class="bAutre" onclick="window.open(\'/docroom/bio/bio.pdf\',\'_blank\');">Fiche BIO</div>';
 	$html.='<div class="bInfo" id="boutonInfos" onclick="slide(\'repInfo\');">Infos';
 	$html.='<li class="rInfo"><a href="?mode=m&component=garde&action=mainMenu">Gardes</a></li><li class="repInfo"><a href="?mode=m&component=vacancier&action=listEnCours">Vacanciers</a></li><li class="repInfo"><a href="?mode=m&component=cops&action=listing" target="_blank">COPS</a></li><li class="repInfo"><a href="?mode=pop&component=documentation&action=mainMenu" target="_blank">Documentation</a></li><li class="repInfo"><a href="https://www.polcom.be/CIA2/cia.php?step=0&err=2" target="_blank">I+ Hainaut</a></li></div>';
 	$html.='<div id="B4"></div><div id="repInfos"></div>';
