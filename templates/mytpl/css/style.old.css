@@ -222,7 +222,7 @@ Menu déroulant horizontal
         color: #fafafa;
 }
 
-*html #menu li a:hover{ /* IE6 */
+html #menu li a:hover{ /* IE6 */
         color: #fafafa;
 }
 
@@ -278,7 +278,7 @@ Menu déroulant horizontal
     text-transform: none;
 }
 
-*html #menu ul a{ /* IE6 */
+html #menu ul a{ /* IE6 */
         height: 10px;
         width: 150px;
 }

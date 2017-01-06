@@ -1,0 +1,10 @@
+iduser
+mode
+appli
+nivApp
+idbs -> identifiant du bs
+indic -> indicatif radio de la patrouille
+idpat -> identifiant de la patrouille
+
+
++ chaque champ comptabilisant les activit&eacute;s de la patrouille

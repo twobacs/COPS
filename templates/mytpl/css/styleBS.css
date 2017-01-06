@@ -182,7 +182,7 @@ border: 0px solid #666;
 
 
 /************************
-Menu déroulant horizontal
+Menu dï¿½roulant horizontal
 ************************/
 
 #menu{
@@ -225,7 +225,7 @@ Menu déroulant horizontal
         color: #fafafa;
 }
 
-*html #menu li a:hover{ /* IE6 */
+html #menu li a:hover{ /* IE6 */
         color: #fafafa;
 }
 
@@ -281,7 +281,7 @@ Menu déroulant horizontal
     text-transform: none;
 }
 
-*html #menu ul a{ /* IE6 */
+html #menu ul a{ /* IE6 */
         height: 10px;
         width: 150px;
 }
@@ -329,7 +329,7 @@ Menu déroulant horizontal
     border-radius: 0 0 5px 5px;
 }
 
-/* Rétablissement du flottement */
+/* Rï¿½tablissement du flottement */
 #menu:after{
         visibility: hidden;
         display: block;
@@ -343,7 +343,7 @@ Menu déroulant horizontal
 *:first-child+html #menu { zoom: 1; } /* IE7 */
 
 /****************************
-Fin menu déroulant horizontal
+Fin menu dï¿½roulant horizontal
 ****************************/
 
 
