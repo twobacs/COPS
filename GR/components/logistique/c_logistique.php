@@ -94,6 +94,30 @@ public function gestBatons(){
 	else $this->view->error();
 }
 
+public function gestMob(){
+    if((isset($_SESSION['idUser']))&&($_SESSION['appli']=='logistique')&&($_SESSION['acces']>='8')){
+        $categs=$this->model->getCategs();
+        $batiments=$this->model->getBatiments();
+        $listMob=$this->model->getListMob();
+        $this->view->gestMob($categs,$batiments,$listMob);
+    }
+    else if(!isset($_SESSION['idUser'])){
+		$this->view->unconnected();
+	}
+	else $this->view->error();
+}
+
+public function gestLoc(){
+    if((isset($_SESSION['idUser']))&&($_SESSION['appli']=='logistique')&&($_SESSION['acces']>='8')){
+        $data=$this->model->getLoc();
+        $this->view->gestLoc($data);
+    }
+    else if(!isset($_SESSION['idUser'])){
+		$this->view->unconnected();
+	}
+	else $this->view->error();
+}
+
 public function retour(){
 	if((isset($_SESSION['idUser']))&&($_SESSION['appli']=='logistique')&&($_SESSION['acces']>='8')){
 		if(!isset($_POST['motif'])){
@@ -262,6 +286,23 @@ public function showNewOrders(){
 		$data=$this->model->getNewOrders();
 		$this->view->showNewOrders($data);
 	}
+}
+
+public function recordNewMob(){
+    if((isset($_SESSION['idUser']))&&($_SESSION['appli']=='logistique')&&($_SESSION['acces']>='5')){
+        $idMob=$this->model->recordNewMob();
+        $this->viewDetailsMob($idMob);
+    }   
+}
+
+public function viewDetailsMob($idMob=0){
+    if ($idMob==0){
+        $this->view->showInfosMobById($this->model->getInfosMobById(filter_input(INPUT_GET, 'Mob')),0);
+    }
+    else if ((isset($_SESSION['idUser']))&&($_SESSION['appli']=='logistique')&&($_SESSION['acces']>='5')){
+        $this->view->showInfosMobById($this->model->getInfosMobById($idMob),1);
+    }
+    
 }
 }
 ?>

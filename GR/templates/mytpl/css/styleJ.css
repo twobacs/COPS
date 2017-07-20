@@ -1,13 +1,13 @@
-#MP-1{
+#MP-1,#MMob-1{
 	color:#989BC1;
 	cursor:pointer;
 }
 
-#MP-1-1{
+#MP-1-1,#MMobBat,#MMobCoul{
 	display:none;
 }
 
-#MP-1-1 li{
+#MP-1-1 li,#MMobBat li,#MMobCoul li{
 	color:#989BC1;
 	display:block;
 	width:200px;
@@ -18,18 +18,18 @@
 	transition:border .5s, color .5s;
 }
 
-#MP-1-1 li:hover{
+#MP-1-1 li:hover,#MMobBat li:hover,#MMobCoul li:hover{
 	border:2px #1F507E solid;
 	background-color:#989BC1;
 }
 
-#MP-1-1 a{
+#MP-1-1 a,#MMobBat a,#MMobCoul a{
 	color:#989BC1;
 	text-decoration:none;
 	transition:color 1s;
 }
 
-#MP-1-1 a:hover{
+#MP-1-1 a:hover,#MMobBat a:hover,#MMobCoul a:hover{
 	color:#1F507E;
 }
 
@@ -37,6 +37,10 @@
 	display:inline;
 	padding:25px;
 	color:#d1d1e0;
+}
+
+#gestAdminSite li a{
+    color:#83a5c3;
 }
 
 #main h3{

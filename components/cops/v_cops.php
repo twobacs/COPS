@@ -82,6 +82,7 @@ public function showMenu($level)
 		// $html.='<a href=?component=cops&action=listing>Liste</a> des infos COPS<br />';
 		$html.='<a href=index.php?component=cops&action=editInfoCops>Editer</a> une info COPS<br />';
 		$html.='<a href=index.php?component=cops&action=gstMsgs>Gérer</a> les infos HOT ! proposées<br />';
+		$html.='<a href="docroom/bio/bio.pdf">Fiche bio actuelle</a>';
 		}
 		
 	if (($level=='20') || ($level=='30') || ($level=='50'))

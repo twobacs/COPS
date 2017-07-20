@@ -888,5 +888,112 @@ public function getNewOrders(){
 	$cart=new Cart($this->appli->dbPdo);
 	return $cart->getNewOrders();	
 }
+
+public function getLoc(){
+    $sql='SELECT a.id, a.denomination, a.commentaire, a.id_niveau FROM local a ORDER BY a.id_niveau';
+    $req=$this->appli->dbPdo->query($sql);
+    return $req;
+}
+
+public function getCategs(){
+    $sql='SELECT id, denomination FROM type_mobilier ORDER BY denomination';
+    //$req=$this->appli->dbPdo->prepare($sql);
+    return $this->appli->dbPdo->query($sql);
+}
+
+public function getBatiments(){
+    $sql='SELECT id, denomination FROM local WHERE id_niveau IS NULL';
+    return $this->appli->dbPdo->query($sql);
+}
+
+public function recordNewMob(){
+    if(isset($_FILES['fileToUpload']['name'])){
+        $nomFichier=$this->uploadPDF('logistique');
+    }
+    $urlFichier='/GR/docroom/uploaded_files/logistique/'.$nomFichier;
+    $categorie=\filter_input(INPUT_POST, 'newMobSelectCateg');
+    $denomination=\filter_input(INPUT_POST, 'denomNewMob');
+    $commentaire=\filter_input(INPUT_POST, 'comNewMob');
+    $batiment=\filter_input(INPUT_POST, 'selectedBatNewMob');
+    $niveau=\filter_input(INPUT_POST, 'selectedNivNewMob');
+    $local=\filter_input(INPUT_POST, 'selectedLclNewMob');
+    $idMob=md5(uniqid());
+    //INSERTION DANS LA TABLE mobilier
+    $sql='INSERT INTO mobilier (id, denomination, id_type, commentaire, id_local) VALUES (:idMob, :den, :type, :comm, :local)';
+    $req=$this->appli->dbPdo->prepare($sql);
+    $req->bindValue('idMob',$idMob,PDO::PARAM_STR);
+    $req->bindValue('den',$denomination,PDO::PARAM_STR);
+    $req->bindValue('type',$categorie,PDO::PARAM_STR);
+    $req->bindValue('comm',$commentaire,PDO::PARAM_STR);
+    $req->bindValue('local',$local,PDO::PARAM_STR);
+    $req->execute();
+    
+    //INSERTION DANS LA TABLE documents_gestMob
+    $sql='INSERT INTO documents_gestMob (id, url, nom_doc, type_fichier) VALUES (:idDoc, :urlDoc, :nomDoc, :typeFichier)';
+    $req=$this->appli->dbPdo->prepare($sql);
+    $req->bindValue('idDoc',$nomFichier,PDO::PARAM_STR);
+    $req->bindValue('urlDoc',$urlFichier,PDO::PARAM_STR);
+    $req->bindValue('nomDoc',$_FILES['fileToUpload']['name'],PDO::PARAM_STR);
+    $req->bindValue('typeFichier',$_FILES['fileToUpload']['type'],PDO::PARAM_STR);
+    $req->execute();
+    
+    //INSERTION DANS LA TABLE mob_doc
+    $sql='INSERT INTO mob_doc (id_mob, id_doc) VALUES (:mob, :doc)';
+    $req=$this->appli->dbPdo->prepare($sql);
+    $req->bindValue('mob',$idMob,PDO::PARAM_STR);
+    $req->bindValue('doc',$nomFichier,PDO::PARAM_STR);
+    $req->execute();
+    
+    //GENERATION QR CODE
+    $urlViewObject='http://'.$_SERVER['HTTP_HOST'].'/GR/index.php?component=logistique&action=viewDetailsMob&Mob='.$idMob;
+    include('/var/lib/phpqrcode/qrlib.php');
+    QRcode::png($urlViewObject, '/var/www/GR/docroom/QRcodes/'.$idMob.'.png');     
+    //FIN GENERATION QR CODE
+    
+    return $idMob;   
+}
+
+public function getInfosMobById($idMob){
+    $sql=''
+            . 'SELECT '
+            . 'a.denomination, a.commentaire, a.id, '
+            . 'b.denomination AS denomType, '
+            . 'c.denomination AS denomLcl, c.commentaire AS comLcl '
+            . 'FROM mobilier a '
+            . 'LEFT JOIN type_mobilier b ON b.id=a.id_type '
+            . 'LEFT JOIN local c ON c.id=a.id_local '
+            . 'WHERE a.id=:idMob';
+    $req=$this->appli->dbPdo->prepare($sql);
+    $req->bindValue('idMob',$idMob,PDO::PARAM_STR);
+    $req->execute();
+    return $req;
+}
+
+public function getListMob(){
+    $sql=''
+            . 'SELECT '
+            . 'a.id, a.denomination, a.commentaire, '
+            . 'b.denomination AS denomType,'
+            . 'c. denomination AS denomLcl, c.commentaire AS comLcl '
+            . 'FROM mobilier a '
+            . 'LEFT JOIN type_mobilier b ON b.id=a.id_type '
+            . 'LEFT JOIN local c ON c.id = a.id_local '
+            . 'ORDER BY ';
+    $sql.='date_in DESC';
+    $data=array();
+    $i=0;
+    $req=$this->appli->dbPdo->query($sql);
+    while($row=$req->fetch()){
+        $data[$i]['id']=$row['id'];
+        $data[$i]['denomination']=$row['denomination'];
+        $data[$i]['commentaire']=$row['commentaire'];
+        $data[$i]['denomType']=$row['denomType'];
+        $data[$i]['denomLcl']=$row['denomLcl'];
+        $data[$i]['comLcl']=$row['comLcl'];
+        $i++;
+    }
+    $data['ttl']=$i;
+    return $data;
+}
 }
 ?>

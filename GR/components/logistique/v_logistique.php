@@ -109,13 +109,15 @@ public function menuLogisticien(){
 	$html.='<div id="menuLog" onclick="slide(\'slide2\',\'0\');">Menu logisticien</div>';
 	$html.='<div id="slide2">';
 	$html.='<div id="aLog">';
+        $html.='<a href="?component=logistique&action=gestMob">Gestion mobilier</a><br />';
+        $html.='<a href="?component=logistique&action=gestLoc">Gestion des locaux</a><br />';
 	$html.='<a href="?component=logistique&action=gestArmes">Gestion des armes</a><br />';
 	$html.='<a href="?component=logistique&action=gestBrassards">Gestion des brassards police</a><br />';
 	$html.='<a href="?component=logistique&action=gestRadios">Gestion des radios "Astrid"</a><br />';
 	$html.='<a href="?component=logistique&action=gestBatons">Gestion des b&acirc;tons de police</a><br />';
 	$html.='<a href="?component=logistique&action=gestETTs">Gestion des ETT</a><br />';
 	$html.='<a href="?component=logistique&action=gestPMB">Gestion papeterie et mat&eacuteriel de bureau</a><br />';
-	$html.='</div>';
+        $html.='</div>';
 	$html.='</div>';
 	$html.='</div>';
 	return $html;	
@@ -1258,7 +1260,7 @@ public function showNewOrders($data){
 				<div class="input-group-addon" style="width:50px;">'.$this->datefr($row['date_creation']).'</div>
 				<div class="input-group-addon" style="width:55px;">Demandeur</div>
 				<div class="input-group-addon" style="width:350px;">'.ucfirst($row['nom']).' '.ucfirst($row['prenom']).'</div>
-				<div class="input-group-addon" style="cursor:pointer;color:green;width:35px;" onclick="showDetailsOrder(\''.$row['id_panier'].'\',\''.$_SESSION['idUser'].'\');">D&eacute;tails</div>
+				<div class="input-group-addon" style="cursor:pointer;color:green;width:35px;" onclick="showDetailsOrder(\''.$row['id_panier'].'\');">D&eacute;tails</div>
 			
 		</div>
 		';
@@ -1267,6 +1269,210 @@ public function showNewOrders($data){
 	$html.='</div>';
 	$html.='<div id="detailsCommande" style="margin-top:15px;"></div>';
 	$this->appli->content=$html;
+}
+
+public function gestMob($categs,$batiments,$listMob){
+    $reload=(isset($_GET['reload'])) ? filter_input(INPUT_GET, 'reload'):'';
+    $action=(isset($_GET['action'])) ? filter_input(INPUT_GET, 'action'):'';
+    $reload=($action=='recordNewMob') ? 'menuAddMob' : '';
+    //echo $reload;
+    $html='<div id="gestAdminSite">';
+    $html.='<h2>Gestion mobilier</h2>';
+    $html.='<ul>'
+            . '<li><a href="#" onclick="slide(\'menuAddMob\');">Ajouter</a>'
+            . '<li><a href="#" onclick="slide(\'menuSearchMob\');">Rechercher</a>'
+            . '<li><a href="#" onclick="slide(\'menuListMob\');">Lister</a>'
+            . '</ul>';
+    $html.='</div>';
+    //AJOUT DE MOBILIER
+    $html.='<div id="menuAddMob" style="display:';
+    $html.=($reload=='menuAddMob') ? 'block' : 'none';
+    $html.=';"><h3>Ajouter du mobilier</h3>'
+            . '<form method="POST" action="index.php?component=logistique&action=recordNewMob" enctype="multipart/form-data" style="margin:0 auto; width:650px;">'
+            . '<div class="input-group" style="width:650px;">'
+            . '<span class="input-group-addon" style="min-width:200px;">Catégorie</span><select required class="form-control" name="newMobSelectCateg" id="newMobSelectCateg" onchange="checkAddCatg();"><option></option><option value="-1">Ajouter une catégorie</option>';
+            while($row=$categs->fetch()){
+                $html.='<option value="'.$row['id'].'">'.$row['denomination'].'</option>';
+            }
+    $html.='</select></div>'
+            . ' <div id="inputAddCateg" style="display:none;">'
+            . '     <div class="input-group" style="width:650px;">'
+            . '         <span class="input-group-addon" style="min-width:200px;"/>Nouvelle cat&eacute;gorie</span>'
+            . '         <input type="text" class="form-control" placeholder="D&eacute;nomination nouvelle cat&eacute;gorie" id="denomNewMobCateg">'
+            . '         <span class="input-group-addon" style="cursor:pointer;" onclick="addNewMobCateg(\''.$_SERVER['HTTP_HOST'].'\',\''.$_SERVER['REQUEST_URI'].'\');" >Enregistrer</span>'
+            . '     </div>'
+            . ' </div>'
+            . ' <div class="input-group" style="width:650px;">'
+            . '     <span class="input-group-addon" style="min-width:200px;">D&eacute;nomination</span>'
+            . '     <input required type="text" name="denomNewMob" id="denomNewMob" class="form-control" placeholder="D&eacute;nomination nouvel objet">'
+            . ' </div>'
+            . ' <div class="input-group" style="width:650px;">'
+            . '     <span class="input-group-addon" style="min-width:200px;">Commentaire</span>'
+            . '     <input type="text" name="comNewMob" id="comNewMob" class="form-control" placeholder="Placez ici un commentaire &eacute;ventuel">'
+            . ' </div>'
+            . ' <div class="input-group" style="width:650px;">'
+            . '     <span class="input-group-addon" style="min-width:200px;">Ajouter document (PDF !)</span>'
+            . '     <input required type="file" name="fileToUpload" id="fileToUpload" class="form-control">'
+            . ' </div>'
+            . ' <div class="input-group">'
+            . '     <span class="input-group-addon" style="min-width:200px;">B&acirc;timent d\'installation</span>'
+            . '     <select required class="form-control" name="selectedBatNewMob" id="selectedBatNewMob" onchange="addSelectLvlByIdBat();"><option value="-1" selected disabled></option>';
+    while($row=$batiments->fetch()){
+        $html.='<option value="'.$row['id'].'">'.$row['denomination'].'</option>';
+    }
+    $html.='    </select>'
+            . ' </div>'
+            . ' <div id="addSelectLvlNewMob" style="display:none;"></div>'
+            . ' <div id="addSelectLclNewMob" style="display:none;"></div>'
+            . ' <div class="input-group" style="width:650px;">'
+            . ' <input class="form-control" type="submit" style=":hover{border:1px black solid;}"value="Enregistrer">'
+            . ' </div>'
+            . '</div>'
+            . '</form>';
+    
+    //RECHERCHE DE MOBILIER
+    $html.='<div id="menuSearchMob" style="display:none;"><h3>Rechercher du mobilier</h3>'
+            . ''
+            . '</div>';
+    
+    //LISTE DE MOBILIER
+    $html.='<div id="menuListMob" style="display:none;"><h3>Lister le mobilier</h3>';
+    //$html.=$listMob['ttl'];
+    $html.='<table class="table table-bordered">';
+    $html.='<tr><th>D&eacute;nomination</th><th>Type</th><th>Local</th><th>Code QR</th></tr>';
+    for($i=0;$i<$listMob['ttl'];$i++){
+        $html.='<tr><td>'.$listMob[$i]['denomination'].
+                ' '.$listMob[$i]['commentaire']
+                .'</td><td>'.$listMob[$i]['denomType']
+                .'</td><td>'.$listMob[$i]['denomLcl'].' ('.$listMob[$i]['comLcl'].')</td><td><img width="75" height="75" src="http://'.$_SERVER['HTTP_HOST'].'/GR/docroom/QRcodes/'.$listMob[$i]['id'].'.png"></td></tr>';
+    }
+    $html.= '</table></div>';
+    $this->appli->content=$html;
+}
+
+public function gestLoc($data){
+    $html='<h2>Gestion des locaux</h2>';
+    $html.='<div id="leftAlign">';
+    $html.='<h4 style="cursor:pointer;" onclick="slide(\'sitAct\');">Situation actuelle</h4>';
+    $h=0;
+    $b=0;
+    $n=0;
+    $l=0;
+    $arrayBat=array();
+    $arrayLvl=array();
+    $arrayLoc=array();
+    $batiment=array();
+    $niveau=array();
+    $local=array();
+    while($row=$data->fetch()){
+        //Création d'un array contenant les bâtiments (champ id_niveau vide)
+        if(!isset($row['id_niveau'])){
+            array_push($arrayBat,  $row['id']);
+            $batiment[$b]['id']=$row['id'];
+            $batiment[$b]['denomination']=$row['denomination'];
+            $b++;
+        }
+        
+        //Création d'un tableau contenant les niveaux (si le champ id_niveau correspond à un id du tableau de batiments)
+        else if(in_array($row['id_niveau'],$arrayBat)){
+            array_push($arrayLvl,  $row['id']);
+            $niveau[$n]['id']=$row['id'];
+            $niveau[$n]['denomination']=$row['denomination'];
+            $niveau[$n]['idBat']=$row['id_niveau'];
+            $n++;
+        }
+        
+        //Création d'un tableau contenant les locaux (si le champ id_niveau correspond à un id du tableau de niveaux)
+        else if(in_array($row['id_niveau'],$arrayLvl)){
+            array_push($arrayLoc,  $row['id']);
+            $local[$l]['id']=$row['id'];
+            $local[$l]['denomination']=$row['denomination'];
+            $local[$l]['idNiv']=$row['id_niveau'];
+            $local[$l]['commentaire']=$row['commentaire'];
+            $l++;
+        }
+        $h++;
+    }
+    $html.='<div id="sitAct" style="display:none;"><ul>';
+    for($i=0;$i<$b;$i++){        
+        //Trois boucles imbriquées permettant d'afficher à la suite un batiment, ses niveaux, et les locaux de chacun des niveaux
+        $html.=(isset($batiment[$i]['denomination'])) ? '<li>'.$batiment[$i]['denomination'].'</li><ul>': '';
+        for($j=0;$j<=$n;$j++){            
+            if((isset($niveau[$j]['id']))&&(isset($batiment[$i]['id']))&&($niveau[$j]['idBat']==$batiment[$i]['id'])){
+                $html.='<li>'.$niveau[$j]['denomination'].'</li>';
+                $html.='<ul>';
+                for($k=0;$k<=$l;$k++){                    
+                    if((isset($local[$k]['id']))&&(isset($niveau[$j]['id']))&&($local[$k]['idNiv']==$niveau[$j]['id'])){
+                    $html.='<div onclick="editLcl(\''.$local[$k]['id'].'\')" style="cursor:pointer;">'.$local[$k]['denomination'].' '.$local[$k]['commentaire'].'</div><div id="editingLcl'.$local[$k]['id'].'"></div><br />';
+                    }
+                }
+                $html.='</ul>';
+            }            
+        }
+        $html.='</ul><br />';    
+    }
+    $html.='</ul></div>';
+    
+    //MENU POUR AJOUT D'ENTITES DANS LA TABLE "local"
+    
+    //Ajout d'un batiment
+       
+    $html.='<p><h4 style="cursor:pointer;" onclick="slide(\'addBat\');">Ajouter un b&acirc;timent</h4></p>'
+            . '<div class="form-group">'
+            . '<p id="addBat" style="display:none;"><table>'
+            . '<tr><td><input class="form-control" type="text" id="nBat" placeHolder="Nom b&acirc;timent"></td></tr>'
+            . '<tr><td><input type="button" class="btn btn-default" value="Enregistrer" onclick="recGL(\'bat\');"></td></tr></table></p>'
+            . '</div>';
+    
+    //Ajout d'un niveau
+    $html.='<p><h4 onclick="slide(\'addLvl\');" style="cursor:pointer;">Ajouter un niveau</h4></p>'
+            . '<div class="form-group">'
+            . '<p id="addLvl" style="display:none;"><table>'
+            . '<tr><td><select class="form-control" name="existBat" id="existBat"><option></option>';
+    //OPTIONS DE CHOIX DE BATIMENT 
+    for($i=0;$i<sizeof($batiment);$i++){
+        $html.='<option value="'.$batiment[$i]['id'].'">'.$batiment[$i]['denomination'].'</option>';
+    }
+    $html.= '</select></td></tr>'
+            . '<tr><td><input type="text" class="form-control" id="nLvl" placeHolder="Nom niveau"></td></tr>'
+            . '<tr><td><input class="btn btn-default" type="button" value="Enregistrer" onclick="recGL(\'lvl\');"></td></tr></table></p>'
+            . '</div>';
+    
+    
+    //Ajout d'un local
+    $html.='<p><h4 onclick="slide(\'addLcl\');" style="cursor:pointer;">Ajouter un local</h4></p>'
+            . '<div class="form-group">'
+            . '<p id="addLcl" style="display:none;"><table>'
+            . '<tr><td><select class="form-control" name="existBat2" id="existBat2" onchange="addInfosNewLcl();"><option></option>';
+    //OPTIONS DE CHOIX DE BATIMENT 
+    for($i=0;$i<sizeof($batiment);$i++){
+        $html.='<option value="'.$batiment[$i]['id'].'">'.$batiment[$i]['denomination'].'</option>';
+    }
+    $html.= '</select></td></tr>'
+            . '<tr><td id="selectLclByBat"></td></tr>'
+            . '<tr><td id="inputTextForNewLcl"></td></tr>'
+            . '<tr><td id="inputCommentForNewLcl"></td></tr>'
+            . '<tr><td><input class="btn btn-default" type="button" value="Enregistrer" onclick="recGL(\'lcl\');"></td></tr></table></p>'
+            . '</div>';
+    
+    //FIN MENU AJOUT D'ENTITES DANS LA TABLE "local"
+    $html.='</div>';
+    $this->appli->content=$html;
+}
+
+public function showInfosMobById($data,$from){
+    $html='<h2>Infos mobilier</h2>';
+    while($row=$data->fetch()){
+        $html.='<div id="'.$row['id'].'">'
+                . '<table class="table">'
+                . '<tr><th>D&eacute;nomination</th><td>'.$row['denomination'].'</td></tr>'
+                . '<tr><th>Cat&eacute;gorie</th><td>'.$row['denomType'].'</td></tr>'
+                . '<tr><th>Local d\'installation</th><td>'.$row['denomLcl'].' ('.$row['comLcl'].')</td></tr>'
+                . '</table>'
+                . '<img src="http://'.$_SERVER['HTTP_HOST'].'/GR/docroom/QRcodes/'.$row['id'].'.png">'
+                . '</div>';
+    }   
+    $this->appli->content=$html;
 }
 }
 ?>

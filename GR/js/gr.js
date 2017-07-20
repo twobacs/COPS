@@ -742,13 +742,12 @@ function modifQArt(art,panier,op){
 	
 }
 
-function showDetailsOrder(idPanier,log){
+function showDetailsOrder(idPanier){
 	$.ajax({
 		type:"GET",
 		url:"js/php/logistique/showDetailsOrder.php",
 		data:{
 			idPanier:idPanier,
-			log:log,
 		},
 		success:function(retour){
 			document.getElementById('detailsCommande').innerHTML=retour;
@@ -836,54 +835,187 @@ function updateComLogRowPanier(row){
 	});
 }
 
-function closeBasket(id,log){
-	var ok = confirm('Voulez-vous clôturer cette commande ? \nVérifiez préalablement les quantités signalées comme livrées.\nUne fois clôturée, vous ne pourrez plus la modifier !');
-	if (ok){
-		$.ajax({
-			type:"GET",
-			url:"js/php/logistique/closeBasket.php",
-			data:{
-				panier:id,
-				log:log,
-			},
-			success:function(retour){
-				if(retour==1){
-					window.location.reload();
-				}
-				else{
-					// alert(retour);
-					alert('Une erreur s\'est produite');
-				}
-			}
-		});
-	}
+function recGL(type){
+    
+    if(type==='bat'){
+        var nBat=document.getElementById('nBat').value;
+        var nLvl=0;
+        var nLcl=0;
+        var com=0;
+    }
+    else if (type==='lvl'){
+        var temp=document.getElementById('existBat');
+        var nBat=temp.options[temp.selectedIndex].value;
+        var nLvl=document.getElementById('nLvl').value;
+        var nLcl=0;
+        var com=0;
+    }
+    else if (type==='lcl'){
+        var temp=document.getElementById('existBat2');
+        var nBat=temp.options[temp.selectedIndex].value;
+        var temp=document.getElementById('idNivToNewLcl');
+        var nLvl=temp.options[temp.selectedIndex].value;
+        var nLcl=document.getElementById('nLcl').value;
+        var com=document.getElementById('comNLcl').value;
+    }
+    $.ajax({
+        type:"GET",
+        url:"js/php/logistique/addNewGestLoc.php",
+        data:{
+            nBat : nBat,
+            nLvl : nLvl,
+            nLcl : nLcl,
+            com : com
+        },
+        success:function(retour){
+            if(retour==1){
+                location.reload();
+            }
+        }
+    });
 }
 
-function commentBasket(basket,user){
-	$.ajax({
-		type:"GET",
-		url:"js/php/logistique/getCommentBasket.php",
-		data:{
-			basket:basket,
-			user:user,
-		},
-		success:function(retour){document.getElementById('commentBasket').innerHTML=retour;}
-	});
-	
+function addInfosNewLcl(){
+    var temp=document.getElementById('existBat2');
+    var idBat=temp.options[temp.selectedIndex].value;
+    //alert(idBat);
+    $.ajax({
+        type:"GET",
+        url:"js/php/logistique/getLvlByIdBat.php",
+        data:{
+            idBat : idBat
+        },
+        success:function(retour){document.getElementById('selectLclByBat').innerHTML=retour;}
+    });
+    //document.getElementById('selectLclByBat').innerHTML='<input type="text" value="Yo msieur White">';
 }
 
-function updateComment(basket){
-	newComment=document.getElementById('comBasket'+basket).value;
-$.ajax({
-		type:"GET",
-		url:"js/php/logistique/updateCommentBasket.php",
-		data:{
-			basket:basket,
-			newComment:newComment,
-		},
-		success:function(retour){document.getElementById('comBasket'+basket).value=newComment;}
-	});	
-	
+function addInputTextForNewLcl(){
+    document.getElementById("inputTextForNewLcl").innerHTML='<input type="text" class="form-control" id="nLcl" placeHolder="Nom local">';
+    document.getElementById("inputCommentForNewLcl").innerHTML='<input type="text" class="form-control" id="comNLcl" placeHolder="Commentaire">';
+}
+
+function checkAddCatg(){
+    var temp=document.getElementById('newMobSelectCateg');
+    var rep=temp.options[temp.selectedIndex].value;
+    if(rep=='-1'){
+        slide('inputAddCateg');        
+        document.getElementById('denomNewMobCateg').focus();
+    }
+    else{
+        var status=document.getElementById('inputAddCateg').style.display;
+        if((status=='block')||(status=='')){
+            slide('inputAddCateg');           
+        }        
+         document.getElementById('denomNewMob').focus();
+    }
+}
+
+function addNewMobCateg(host,url){
+   
+    var url='http://'+host+url+'&reload=menuAddMob';
+    var newCateg=document.getElementById('denomNewMobCateg').value;
+    $.ajax({
+        type:"GET",
+        url:"js/php/logistique/addNewMobCateg.php",
+        data:{
+            newCateg : newCateg,
+        },
+        success:function(retour){
+            if(retour=='1'){
+                window.location.replace(url);
+            }
+        }
+    });
+}
+
+function editLcl(idLoc){
+    $.ajax({
+        type:"GET",
+        url:"js/php/logistique/getInfoLclById.php",
+        data:{
+            idLoc : idLoc,
+        },
+        success:function(retour){
+            document.getElementById('editingLcl'+idLoc).innerHTML=retour;
+        },
+    });    
+}
+
+function recordModifLcl(idLoc){
+    var nDenom=document.getElementById('editingDenomLcl'+idLoc).value;
+    var nCom=document.getElementById('editingComLcl'+idLoc).value;
+    $.ajax({
+        type:"GET",
+        url:"js/php/logistique/recordModifLcl.php",
+        data:{
+            idLoc : idLoc,
+            nDenom : nDenom,
+            nCom : nCom,
+        },
+        success:function(retour){
+            if(retour=='1'){
+                
+                alert('Modifications enregistrées');
+            }
+        },
+    });     
+}
+
+function addSelectLvlByIdBat(){
+    var temp=document.getElementById('selectedBatNewMob');
+    var idBat=temp.options[temp.selectedIndex].value;
+    if (idBat!='-1'){
+        $.ajax({
+            type:"GET",
+            url:"js/php/logistique/addSelectLvlByIdBat.php",
+            data:{
+                idBat : idBat,
+            },
+            success:function(retour){
+                document.getElementById('addSelectLvlNewMob').innerHTML=retour;
+                var display=($('#addSelectLvlNewMob').css('display'));
+                //alert(display);
+                if(display=='none'){
+                    $('#addSelectLvlNewMob').slideToggle(500);
+                }
+            }});
+    }
+    else{
+        document.getElementById('addSelectLvlNewMob').innerHTML='<div class="input-group" style="width:650px;"><span class="input-group-addon" style="min-width:200px;">Niveau</span><input type="text" name="temp" class="form-control">';
+        var display=($('#addSelectLvlNewMob').css('display'));
+        if(display=='block'){
+            slide('addSelectLvlNewMob');
+        }
+    }
+}
+
+function addSelectLclByIdBat(){
+    var temp=document.getElementById('selectedNivNewMob');
+    var idBat=temp.options[temp.selectedIndex].value;
+    if (idBat!='-1'){
+        $.ajax({
+            type:"GET",
+            url:"js/php/logistique/addSelectLclByIdBat.php",
+            data:{
+                idBat : idBat,
+            },
+            success:function(retour){
+                document.getElementById('addSelectLclNewMob').innerHTML=retour;
+                var display=($('#addSelectLclNewMob').css('display'));
+                //alert(display);
+                if(display=='none'){
+                    $('#addSelectLclNewMob').slideToggle(500);
+                }
+            }});
+    }
+    else{
+        document.getElementById('addSelectLclNewMob').innerHTML='<div class="input-group" style="width:650px;"><span class="input-group-addon" style="min-width:200px;">Local</span><input type="text" name="temp" class="form-control">';
+        var display=($('#addSelectLclNewMob').css('display'));
+        if(display=='block'){
+            slide('addSelectLclNewMob');
+        }
+    }
 }
 
 function closeRow(i){
